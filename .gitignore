@@ -18,7 +18,7 @@ cmake-build-debug
 .env
 .antlr
 .venv
-
+# **/*Zone.Identifier
 # MACOS
 .DS_Store
 

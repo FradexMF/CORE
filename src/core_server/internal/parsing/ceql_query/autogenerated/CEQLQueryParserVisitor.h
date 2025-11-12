@@ -57,6 +57,8 @@ public:
 
     virtual std::any visitFilter_cel_formula(CEQLQueryParser::Filter_cel_formulaContext *context) = 0;
 
+    virtual std::any visitAllen_interval_algebra_overlap(CEQLQueryParser::Allen_interval_algebra_overlapContext *context) = 0;
+
     virtual std::any visitOr_cel_formula(CEQLQueryParser::Or_cel_formulaContext *context) = 0;
 
     virtual std::any visitAs_cel_formula(CEQLQueryParser::As_cel_formulaContext *context) = 0;

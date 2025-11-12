@@ -56,6 +56,7 @@ cel_formula
  | cel_formula COLON cel_formula                      # contiguous_sequencing_cel_formula
  | cel_formula K_OR cel_formula                       # or_cel_formula
  | cel_formula K_FILTER filter                        # filter_cel_formula
+ | cel_formula COLON_O cel_formula                    # allen_interval_algebra_overlap
  ;
 
 partition_list

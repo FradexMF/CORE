@@ -22,9 +22,9 @@ public:
     EQ = 41, NEQ = 42, SEMICOLON = 43, COLON = 44, COMMA = 45, DOUBLE_DOT = 46, 
     LEFT_PARENTHESIS = 47, RIGHT_PARENTHESIS = 48, LEFT_SQUARE_BRACKET = 49, 
     RIGHT_SQUARE_BRACKET = 50, LEFT_CURLY_BRACKET = 51, RIGHT_CURLY_BRACKET = 52, 
-    COLON_PLUS = 53, IDENTIFIER = 54, DOUBLE_LITERAL = 55, INTEGER_LITERAL = 56, 
-    NUMERICAL_EXPONENT = 57, STRING_LITERAL = 58, SINGLE_LINE_COMMENT = 59, 
-    MULTILINE_COMMENT = 60, SPACES = 61, UNEXPECTED_CHAR = 62
+    COLON_PLUS = 53, COLON_O = 54, IDENTIFIER = 55, DOUBLE_LITERAL = 56, 
+    INTEGER_LITERAL = 57, NUMERICAL_EXPONENT = 58, STRING_LITERAL = 59, 
+    SINGLE_LINE_COMMENT = 60, MULTILINE_COMMENT = 61, SPACES = 62, UNEXPECTED_CHAR = 63
   };
 
   enum {
@@ -361,6 +361,17 @@ public:
     Cel_formulaContext *cel_formula();
     antlr4::tree::TerminalNode *K_FILTER();
     FilterContext *filter();
+
+    virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+  };
+
+  class  Allen_interval_algebra_overlapContext : public Cel_formulaContext {
+  public:
+    Allen_interval_algebra_overlapContext(Cel_formulaContext *ctx);
+
+    std::vector<Cel_formulaContext *> cel_formula();
+    Cel_formulaContext* cel_formula(size_t i);
+    antlr4::tree::TerminalNode *COLON_O();
 
     virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
   };
