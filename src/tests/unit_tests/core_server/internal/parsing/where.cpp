@@ -143,6 +143,26 @@ TEST_CASE("event:event", "[Where]") {
   REQUIRE(formula->equals(expected_formula.get()));
 }
 
+TEST_CASE("event :o event", "[Where]") {
+  auto query = create_where_query("H :o T");
+  auto expected_formula = make_unique<AllenIntervalAlgebraOverlap>(
+    make_unique<EventTypeFormula>("H"), make_unique<EventTypeFormula>("T"));
+  auto formula = parse_formula(query);
+  INFO("Expected: " + expected_formula->to_string());
+  INFO("Got: " + formula->to_string());
+  REQUIRE(formula->equals(expected_formula.get()));
+}
+
+TEST_CASE("event:oevent", "[Where]") {
+  auto query = create_where_query("H:oT");
+  auto expected_formula = make_unique<AllenIntervalAlgebraOverlap>(
+    make_unique<EventTypeFormula>("H"), make_unique<EventTypeFormula>("T"));
+  auto formula = parse_formula(query);
+  INFO("Expected: " + expected_formula->to_string());
+  INFO("Got: " + formula->to_string());
+  REQUIRE(formula->equals(expected_formula.get()));
+}
+
 TEST_CASE("event or event", "[Where]") {
   auto query = create_where_query("H OR T");
   auto expected_formula = make_unique<OrFormula>(make_unique<EventTypeFormula>("H"),
