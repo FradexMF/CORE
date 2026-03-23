@@ -13,7 +13,7 @@ namespace CORE::Internal::CEA {
 
 class AllenIntervalAlgebraOverlap final : public LogicalCEATransformer {
   public:
-  using VariablesToMark = mpz_class;
+  using VariablesToMark = Bitset;
   using EndNodeId = uint64_t;
 
   //The construction is as follows: A_overlap = (Q1 U Q2 U Q1xQ2, P1 U P2, X1 U X2, T', q0, F2)
@@ -25,85 +25,62 @@ class AllenIntervalAlgebraOverlap final : public LogicalCEATransformer {
   LogicalCEA eval(LogicalCEA&& left, LogicalCEA&& right) override {
 
     return left;
-    //Q1 U Q2, T1 U+ T2, q0, F2
-    // LogicalCEA out = Union()(left, right);
-    // out.initial_states = left.initial_states;
-    // out.final_states = right.final_states << left.amount_of_states;
-    // auto left_final_states = left.get_final_states();
-    // auto right_initial_states = right.get_initial_states();
-
-    // //create the intersection (from opeartor_and branch)
-    // uint64_t num_prod_states = left.amount_of_states * right.amount_of_states
-    // out.add_n_states(num_prod_states)
-
-    // auto left_right_n_states = left.amount_of_states + right.amount_of_states
-
-    // for (size_t i = 0; i < left.transitions.size(); ++i) {
-    //   for (const auto& transition1 : left.transitions[i]) {
-
-    //     for (size_t j = 0; j < right.transitions.size(); ++j) {
-    //       for (const auto& transition2 : right.transitions[j]) {
-
-    //         PredicateSet intersection = std::get<0>(transition1)
-    //                                     & std::get<0>(transition2);
-
-    //         if (intersection.type != PredicateSet::Contradiction) {
-    //           VariablesToMark combined_mark = std::get<1>(transition1)
-    //                                           | std::get<1>(transition2);
-
-    //           if (combined_mark == 0) { //im not sure if this is needed
-
-    //             EndNodeId source = left_right_n_states + i * right.amount_of_states + j;
-
-    //             EndNodeId target = left_right_n_states + 
-    //                                std::get<2>(transition1) * right.amount_of_states
-    //                               + std::get<2>(transition2);
-
-    //             out.transitions[source].push_back(
-    //               std::make_tuple(intersection, combined_mark, target));
-    //           }                         
-    //         }
-    //       }
-    //     }
-    //   }
-    // }
-
-    //ad the 
-
-
-    //for each state in left, create an epsilon transition to the intersection
-    //so a for on each state in left, with a for on each initial state of right, epsilon
-
-    //for eac state in intersection with qn, create epsilon transition to right
-    //a for on each final state on left, with a for on each state in right, epsilon
-
-      
-    //done... ?
+    // Q1 U Q2, T1 U+ T2, q0, F2
+    LogicalCEA out = Union()(left, right);  
+    uint64_t num_prod_states = left.amount_of_states * right.amount_of_states;
+    out.add_n_states(num_prod_states);
     
+    auto left_final_states = left.get_final_states();
+    auto right_initial_states = right.get_initial_states();
 
-  }
-};
+    auto left_right_n_states = left.amount_of_states + right.amount_of_states;
 
-}  // namespace CORE::Internal::CEA
+    //create product transitions
+    for (size_t i = 0; i < left.amount_of_states; ++i) {
+      for (const auto& transition1 : left.transitions[i]) {
 
+        for (size_t j = 0; j < right.amount_of_states; ++j) {
+          for (const auto& transition2 : right.transitions[j]) {
 
-    // LogicalCEA out = Union()(left, right);
-    // out.initial_states = left.initial_states;
-    // out.final_states = right.final_states << left.amount_of_states;
-    // auto left_final_states = left.get_final_states();
-    // auto right_initial_states = right.get_initial_states();
+            PredicateSet intersection = std::get<0>(transition1)
+                                        & std::get<0>(transition2);
 
-    // // Tautology loop
-    // for (auto right_initial_state : right_initial_states) {
-    //   uint64_t target_state_id = right_initial_state + left.amount_of_states;
-    //   out.transitions[target_state_id]
-    //     .emplace_back(PredicateSet(PredicateSet::Type::Tautology), 0, target_state_id);
-    // }
+            if (intersection.type != PredicateSet::Contradiction) {
+              VariablesToMark combined_mark = std::get<1>(transition1) | std::get<1>(transition2);
 
-    // for (auto left_final_state : left_final_states) {
-    //   for (auto right_initial_state : right_initial_states) {
-    //     EndNodeId target = right_initial_state + left.amount_of_states; 
-    //     out.epsilon_transitions[left_final_state].insert(target);
-    //   }
-    // }
-    // return out;
+              EndNodeId source = left_right_n_states + i * right.amount_of_states + j;
+              EndNodeId target = left_right_n_states + 
+                                  std::get<2>(transition1) * right.amount_of_states
+                                + std::get<2>(transition2);
+
+              out.transitions[source].push_back(
+                std::make_tuple(intersection, combined_mark, target));
+              }
+
+            }
+          }
+
+        }
+      }
+
+    //create epsilon transitions from left to product to right
+    for (size_t i = 0; i < left.amount_of_states; ++i) {
+      for (auto right_initial : right.get_initial_states()) {
+
+        EndNodeId product_state = left_right_n_states + i * right.amount_of_states + right_initial;
+
+        out.epsilon_transitions[i].insert(product_state);
+      }
+    }
+
+    for (auto left_final : left.get_final_states()) {
+      for (size_t j = 0; j < right.amount_of_states; ++j) {
+        
+        EndNodeId product_state = left_right_n_states + left_final * right.amount_of_states + j;
+        EndNodeId right_state = left.amount_of_states + j;
+        out.epsilon_transitions[product_state].insert(right_state); 
+      }
+    }
+
+    }
+  };
