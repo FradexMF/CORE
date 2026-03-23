@@ -12,7 +12,7 @@
 namespace CORE::Internal::CEA {
 
 class AllenIntervalAlgebraOverlap final : public LogicalCEATransformer {
- public:
+  public:
   using VariablesToMark = mpz_class;
   using EndNodeId = uint64_t;
 
@@ -24,48 +24,49 @@ class AllenIntervalAlgebraOverlap final : public LogicalCEATransformer {
 
   LogicalCEA eval(LogicalCEA&& left, LogicalCEA&& right) override {
 
+    return left;
     //Q1 U Q2, T1 U+ T2, q0, F2
-    LogicalCEA out = Union()(left, right);
-    out.initial_states = left.initial_states;
-    out.final_states = right.final_states << left.amount_of_states;
-    auto left_final_states = left.get_final_states();
-    auto right_initial_states = right.get_initial_states();
+    // LogicalCEA out = Union()(left, right);
+    // out.initial_states = left.initial_states;
+    // out.final_states = right.final_states << left.amount_of_states;
+    // auto left_final_states = left.get_final_states();
+    // auto right_initial_states = right.get_initial_states();
 
-    //create the intersection (from opeartor_and branch)
-    uint64_t num_prod_states = left.amount_of_states * right.amount_of_states
-    out.add_n_states(num_prod_states)
+    // //create the intersection (from opeartor_and branch)
+    // uint64_t num_prod_states = left.amount_of_states * right.amount_of_states
+    // out.add_n_states(num_prod_states)
 
-    auto left_right_n_states = left.amount_of_states + right.amount_of_states
+    // auto left_right_n_states = left.amount_of_states + right.amount_of_states
 
-    for (size_t i = 0; i < left.transitions.size(); ++i) {
-      for (const auto& transition1 : left.transitions[i]) {
+    // for (size_t i = 0; i < left.transitions.size(); ++i) {
+    //   for (const auto& transition1 : left.transitions[i]) {
 
-        for (size_t j = 0; j < right.transitions.size(); ++j) {
-          for (const auto& transition2 : right.transitions[j]) {
+    //     for (size_t j = 0; j < right.transitions.size(); ++j) {
+    //       for (const auto& transition2 : right.transitions[j]) {
 
-            PredicateSet intersection = std::get<0>(transition1)
-                                        & std::get<0>(transition2);
+    //         PredicateSet intersection = std::get<0>(transition1)
+    //                                     & std::get<0>(transition2);
 
-            if (intersection.type != PredicateSet::Contradiction) {
-              VariablesToMark combined_mark = std::get<1>(transition1)
-                                              | std::get<1>(transition2);
+    //         if (intersection.type != PredicateSet::Contradiction) {
+    //           VariablesToMark combined_mark = std::get<1>(transition1)
+    //                                           | std::get<1>(transition2);
 
-              if (combined_mark == 0) { //im not sure if this is needed
+    //           if (combined_mark == 0) { //im not sure if this is needed
 
-                EndNodeId source = left_right_n_states + i * right.amount_of_states + j;
+    //             EndNodeId source = left_right_n_states + i * right.amount_of_states + j;
 
-                EndNodeId target = left_right_n_states + 
-                                   std::get<2>(transition1) * right.amount_of_states
-                                  + std::get<2>(transition2);
+    //             EndNodeId target = left_right_n_states + 
+    //                                std::get<2>(transition1) * right.amount_of_states
+    //                               + std::get<2>(transition2);
 
-                out.transitions[source].push_back(
-                  std::make_tuple(intersection, combined_mark, target));
-              }                         
-            }
-          }
-        }
-      }
-    }
+    //             out.transitions[source].push_back(
+    //               std::make_tuple(intersection, combined_mark, target));
+    //           }                         
+    //         }
+    //       }
+    //     }
+    //   }
+    // }
 
     //ad the 
 
