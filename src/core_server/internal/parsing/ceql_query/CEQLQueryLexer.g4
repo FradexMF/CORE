@@ -56,6 +56,7 @@ RIGHT_SQUARE_BRACKET : ']' ;
 LEFT_CURLY_BRACKET : '{' ;
 RIGHT_CURLY_BRACKET : '}' ;
 COLON_PLUS : ':+' ;
+COLON_O : ':o';
 
 IDENTIFIER
  :  '`' (~'`' | '``')* '`'
