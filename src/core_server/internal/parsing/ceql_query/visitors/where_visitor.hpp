@@ -17,6 +17,7 @@
 #include "core_server/internal/ceql/cel_formula/formula/non_contiguous_sequencing_formula.hpp"
 #include "core_server/internal/ceql/cel_formula/formula/not_event_type_formula.hpp"
 #include "core_server/internal/ceql/cel_formula/formula/or_formula.hpp"
+#include "core_server/internal/ceql/cel_formula/formula/allen_overlap_formula.hpp"
 #include "core_server/internal/ceql/cel_formula/formula/visitors/formula_visitor.hpp"
 #include "core_server/internal/ceql/query/where.hpp"
 #include "core_server/internal/coordination/catalog.hpp"
@@ -101,6 +102,16 @@ class WhereVisitor : public CEQLQueryParserBaseVisitor {
     formula = std::make_unique<CEQL::NonContiguousSequencingFormula>(std::move(
                                                                        first_formula),
                                                                      std::move(formula));
+    return {};
+  }
+
+   virtual std::any visitAllen_overlap_formula(
+    CEQLQueryParser::Allen_overlap_formulaContext* ctx) override {
+    visit(ctx->cel_formula()[0]);
+    auto first_formula = std::move(formula);
+    visit(ctx->cel_formula()[1]);
+    formula = std::make_unique<CEQL::AllenOverlapFormula>(std::move(first_formula),
+                                                                  std::move(formula));
     return {};
   }
 
