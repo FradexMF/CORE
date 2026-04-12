@@ -12,6 +12,7 @@
 #include "core_server/internal/ceql/cel_formula/formula/non_contiguous_sequencing_formula.hpp"
 #include "core_server/internal/ceql/cel_formula/formula/not_event_type_formula.hpp"
 #include "core_server/internal/ceql/cel_formula/formula/or_formula.hpp"
+#include "core_server/internal/ceql/cel_formula/formula/allen_overlap_formula.hpp"
 #include "core_server/internal/ceql/cel_formula/formula/visitors/formula_visitor.hpp"
 
 namespace CORE::Internal::CEQL {
@@ -48,6 +49,10 @@ struct GetAllASVariablesVisitor : public FormulaVisitor {
   void visit(ProjectionFormula& formula) override { return; }
 
   void visit(OrFormula& formula) override {
+    formula.left->accept_visitor(*this);
+    formula.right->accept_visitor(*this);
+  }
+  void visit(AllenOverlapFormula& formula) override {
     formula.left->accept_visitor(*this);
     formula.right->accept_visitor(*this);
   }

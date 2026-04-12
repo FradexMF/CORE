@@ -62,16 +62,14 @@ class AllenOverlap final : public LogicalCEATransformer {
         }
       }
 
-    //(qi,P1i,L1i,(qi+1,p0))
+    //(qi,P1i,L1i,(qi,p0))
     for (size_t i = 0; i < left.amount_of_states; ++i) {
       for (auto right_initial : right.get_initial_states()) {
-
         EndNodeId product_state = left_right_n_states + i * right.amount_of_states + right_initial;
-
         out.epsilon_transitions[i].insert(product_state);
       }
     }
-    //((qn, pj), P2j, L2j, pj+1)
+    //((qn, pj), P2j, L2j, pj)
     for (auto left_final : left.get_final_states()) {
       for (size_t j = 0; j < right.amount_of_states; ++j) {
         
