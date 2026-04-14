@@ -95,6 +95,10 @@ public:
     return visitChildren(ctx);
   }
 
+  virtual std::any visitAllen_interval_algebra_overlap(CEQLQueryParser::Allen_interval_algebra_overlapContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
   virtual std::any visitOr_cel_formula(CEQLQueryParser::Or_cel_formulaContext *ctx) override {
     return visitChildren(ctx);
   }

@@ -376,6 +376,17 @@ public:
     virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
   };
 
+  class  Allen_interval_algebra_overlapContext : public Cel_formulaContext {
+  public:
+    Allen_interval_algebra_overlapContext(Cel_formulaContext *ctx);
+
+    std::vector<Cel_formulaContext *> cel_formula();
+    Cel_formulaContext* cel_formula(size_t i);
+    antlr4::tree::TerminalNode *COLON_O();
+
+    virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+  };
+
   class  Or_cel_formulaContext : public Cel_formulaContext {
   public:
     Or_cel_formulaContext(Cel_formulaContext *ctx);
