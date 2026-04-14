@@ -1116,6 +1116,29 @@ std::any CEQLQueryParser::Par_cel_formulaContext::accept(tree::ParseTreeVisitor 
   else
     return visitor->visitChildren(this);
 }
+//----------------- Allen_overlap_formulaContext ------------------------------------------------------------------
+
+std::vector<CEQLQueryParser::Cel_formulaContext *> CEQLQueryParser::Allen_overlap_formulaContext::cel_formula() {
+  return getRuleContexts<CEQLQueryParser::Cel_formulaContext>();
+}
+
+CEQLQueryParser::Cel_formulaContext* CEQLQueryParser::Allen_overlap_formulaContext::cel_formula(size_t i) {
+  return getRuleContext<CEQLQueryParser::Cel_formulaContext>(i);
+}
+
+tree::TerminalNode* CEQLQueryParser::Allen_overlap_formulaContext::COLON_O() {
+  return getToken(CEQLQueryParser::COLON_O, 0);
+}
+
+CEQLQueryParser::Allen_overlap_formulaContext::Allen_overlap_formulaContext(Cel_formulaContext *ctx) { copyFrom(ctx); }
+
+
+std::any CEQLQueryParser::Allen_overlap_formulaContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CEQLQueryParserVisitor*>(visitor))
+    return parserVisitor->visitAllen_overlap_formula(this);
+  else
+    return visitor->visitChildren(this);
+}
 //----------------- Filter_cel_formulaContext ------------------------------------------------------------------
 
 CEQLQueryParser::Cel_formulaContext* CEQLQueryParser::Filter_cel_formulaContext::cel_formula() {
@@ -1375,7 +1398,7 @@ CEQLQueryParser::Cel_formulaContext* CEQLQueryParser::cel_formula(int precedence
         }
 
         case 4: {
-          auto newContext = _tracker.createInstance<Allen_interval_algebra_overlapContext>(_tracker.createInstance<Cel_formulaContext>(parentContext, parentState));
+          auto newContext = _tracker.createInstance<Allen_overlap_formulaContext>(_tracker.createInstance<Cel_formulaContext>(parentContext, parentState));
           _localctx = newContext;
           pushNewRecursionContext(newContext, startState, RuleCel_formula);
           setState(169);

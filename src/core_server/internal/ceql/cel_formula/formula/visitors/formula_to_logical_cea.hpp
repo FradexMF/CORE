@@ -19,6 +19,7 @@
 #include "core_server/internal/ceql/cel_formula/formula/non_contiguous_sequencing_formula.hpp"
 #include "core_server/internal/ceql/cel_formula/formula/not_event_type_formula.hpp"
 #include "core_server/internal/ceql/cel_formula/formula/or_formula.hpp"
+#include "core_server/internal/ceql/cel_formula/formula/allen_overlap_formula.hpp"
 #include "core_server/internal/ceql/cel_formula/formula/projection_formula.hpp"
 #include "core_server/internal/ceql/cel_formula/formula/allen_interval_algebra_overlap.hpp"
 #include "core_server/internal/coordination/query_catalog.hpp"
@@ -29,6 +30,7 @@
 #include "core_server/internal/evaluation/logical_cea/transformations/constructions/negate_expected.hpp"
 #include "core_server/internal/evaluation/logical_cea/transformations/constructions/non_contiguous_iteration.hpp"
 #include "core_server/internal/evaluation/logical_cea/transformations/constructions/non_contiguous_sequencing.hpp"
+#include "core_server/internal/evaluation/logical_cea/transformations/constructions/allen_overlap.hpp"
 #include "core_server/internal/evaluation/logical_cea/transformations/constructions/project.hpp"
 #include "core_server/internal/evaluation/logical_cea/transformations/constructions/union.hpp"
 #include "core_server/internal/evaluation/logical_cea/transformations/constructions/allen_interval_algebra_overlap.hpp"
@@ -56,7 +58,7 @@ class FormulaToLogicalCEA : public FormulaVisitor {
 
   void visit(EventTypeFormula& formula) override {
     assert(query_catalog.get_unique_events_from_event_name(formula.event_name).size() != 0
-           && "There event_name is not in the catalog");
+          && "There event_name is not in the catalog");
     if (formula.stream_name.has_value()) {
       current_cea = CEA::LogicalCEA::atomic_cea(query_catalog,
                                                 formula.stream_name.value(),
@@ -112,6 +114,14 @@ class FormulaToLogicalCEA : public FormulaVisitor {
   void visit(ContiguousIterationFormula& formula) override {
     formula.formula->accept_visitor(*this);
     current_cea = CEA::ContiguousIteration()(std::move(current_cea));
+  }
+
+  void visit(AllenOverlapFormula& formula) override {
+    formula.left->accept_visitor(*this);
+    CEA::LogicalCEA left_cea = std::move(current_cea);
+    formula.right->accept_visitor(*this);
+    CEA::LogicalCEA right_cea = std::move(current_cea);
+    current_cea = CEA::AllenOverlap()(left_cea, right_cea);
   }
 
   void visit(ProjectionFormula& formula) override {

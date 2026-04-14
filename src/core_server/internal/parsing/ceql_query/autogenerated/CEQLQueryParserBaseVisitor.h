@@ -87,6 +87,10 @@ public:
     return visitChildren(ctx);
   }
 
+  virtual std::any visitAllen_overlap_formula(CEQLQueryParser::Allen_overlap_formulaContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
   virtual std::any visitFilter_cel_formula(CEQLQueryParser::Filter_cel_formulaContext *ctx) override {
     return visitChildren(ctx);
   }

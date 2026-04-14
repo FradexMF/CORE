@@ -199,6 +199,7 @@ struct LogicalCEA {
   }
 
   std::string to_string_visualization() const {
+    //Visualizator https://puc-iic2223.github.io/
     std::string out = "";
     for (auto i = initial_states.find_first(); i != Bitset::npos;
          i = initial_states.find_next(i)) {
