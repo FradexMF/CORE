@@ -320,4 +320,18 @@ TEST_CASE("Allen Overlap with Sequencing Formulas",
   
 // }
 
+//HS+
+//S+H
+
+//H
+//H
+
+//uno con FILTER:
+// (H FILTER algo) x2
+
+//H or S
+//R or H
+
+
+
 }  // namespace CORE::Internal::CEQL::UnitTests::CEAConstructionFromLogicalCEA
