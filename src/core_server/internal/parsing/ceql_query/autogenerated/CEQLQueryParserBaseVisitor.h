@@ -83,6 +83,10 @@ public:
     return visitChildren(ctx);
   }
 
+  virtual std::any visitAllen_starts_formula(CEQLQueryParser::Allen_starts_formulaContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
   virtual std::any visitPar_cel_formula(CEQLQueryParser::Par_cel_formulaContext *ctx) override {
     return visitChildren(ctx);
   }

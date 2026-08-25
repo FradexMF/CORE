@@ -53,6 +53,8 @@ public:
 
     virtual std::any visitContiguous_iteration_cel_formula(CEQLQueryParser::Contiguous_iteration_cel_formulaContext *context) = 0;
 
+    virtual std::any visitAllen_starts_formula(CEQLQueryParser::Allen_starts_formulaContext *context) = 0;
+
     virtual std::any visitPar_cel_formula(CEQLQueryParser::Par_cel_formulaContext *context) = 0;
 
     virtual std::any visitAllen_overlap_formula(CEQLQueryParser::Allen_overlap_formulaContext *context) = 0;

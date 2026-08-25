@@ -57,6 +57,7 @@ cel_formula
  | cel_formula K_OR cel_formula                       # or_cel_formula
  | cel_formula K_FILTER filter                        # filter_cel_formula
  | cel_formula COLON_O cel_formula                    # allen_overlap_formula
+ | cel_formula COLON_S cel_formula                    # allen_starts_formula
  ;
 
 partition_list

@@ -472,5 +472,64 @@ TEST_CASE("Allen Overlap Isolation: Contiguous Sequencing",
   REQUIRE(cea.amount_of_states > 0); // NOLINT
 }
 
+TEST_CASE("Allen Starts Simple Construction",
+          "[LogicalCEA To CEA - Starts]") {
+  Catalog catalog;
+  Types::StreamInfo stream_info = catalog.add_stream_type({"S", {{"H", {}}, {"S", {}}}});
+
+  auto query1 = Parsing::QueryParser::parse_query(create_query("H"), catalog);
+  QueryCatalog query_catalog1(catalog, query1);
+  auto visitor1 = FormulaToLogicalCEA(query_catalog1);
+  query1.where.formula->accept_visitor(visitor1);
+  CEA::LogicalCEA cea_left = visitor1.current_cea;
+
+  auto query2 = Parsing::QueryParser::parse_query(create_query("S"), catalog);
+  QueryCatalog query_catalog2(catalog, query2);
+  auto visitor2 = FormulaToLogicalCEA(query_catalog2);
+  query2.where.formula->accept_visitor(visitor2);
+  CEA::LogicalCEA cea_right = visitor2.current_cea;
+
+  const uint64_t left_n = cea_left.amount_of_states;
+  const uint64_t right_n = cea_right.amount_of_states;
+
+  INFO("Left CEA:\n" << cea_left.to_string_visualization());
+  INFO("Right CEA:\n" << cea_right.to_string_visualization());
+
+  CEA::AllenStarts starts;
+  CEA::LogicalCEA logical_cea = starts.eval(std::move(cea_left), std::move(cea_right));
+
+  INFO("Starts LogicalCEA:\n" << logical_cea.to_string_visualization());
+
+  REQUIRE(logical_cea.amount_of_states == 12);  // NOLINT
+
+  bool base_states_are_initial = false;
+  for (size_t i = 0; i < left_n + right_n; ++i) {
+    if (logical_cea.initial_states.test(i)) {
+      base_states_are_initial = true;
+      break;
+    }
+  }
+  REQUIRE(!base_states_are_initial); // NOLINT
+  
+  REQUIRE(logical_cea.initial_states.test(left_n + right_n)); // NOLINT
+
+  const uint64_t left_right_n_states = left_n + right_n;
+  const uint64_t product_count = left_n * right_n * 2;
+
+  bool has_product_to_right_epsilon = false;
+  for (size_t i = left_right_n_states; i < left_right_n_states + product_count; ++i) {
+    if (!logical_cea.epsilon_transitions[i].empty()) {
+      has_product_to_right_epsilon = true;
+      break;
+    }
+  }
+  REQUIRE(has_product_to_right_epsilon);  // NOLINT
+
+  auto cea = CEA::CEA(std::move(logical_cea));
+  INFO("Starts CEA:\n" << cea.to_string());
+
+  REQUIRE(cea.amount_of_states > 0); // NOLINT
+}
+
 
 }  // namespace CORE::Internal::CEQL::UnitTests::CEAConstructionFromLogicalCEA

@@ -20,6 +20,7 @@
 #include "core_server/internal/ceql/cel_formula/formula/not_event_type_formula.hpp"
 #include "core_server/internal/ceql/cel_formula/formula/or_formula.hpp"
 #include "core_server/internal/ceql/cel_formula/formula/allen_overlap_formula.hpp"
+#include "core_server/internal/ceql/cel_formula/formula/allen_starts_formula.hpp"
 #include "core_server/internal/ceql/cel_formula/formula/projection_formula.hpp"
 #include "core_server/internal/coordination/query_catalog.hpp"
 #include "core_server/internal/evaluation/logical_cea/logical_cea.hpp"
@@ -30,6 +31,7 @@
 #include "core_server/internal/evaluation/logical_cea/transformations/constructions/non_contiguous_iteration.hpp"
 #include "core_server/internal/evaluation/logical_cea/transformations/constructions/non_contiguous_sequencing.hpp"
 #include "core_server/internal/evaluation/logical_cea/transformations/constructions/allen_overlap.hpp"
+#include "core_server/internal/evaluation/logical_cea/transformations/constructions/allen_starts.hpp"
 #include "core_server/internal/evaluation/logical_cea/transformations/constructions/project.hpp"
 #include "core_server/internal/evaluation/logical_cea/transformations/constructions/union.hpp"
 #include "formula_visitor.hpp"
@@ -113,6 +115,15 @@ class FormulaToLogicalCEA : public FormulaVisitor {
     formula.right->accept_visitor(*this);
     CEA::LogicalCEA right_cea = std::move(current_cea);
     current_cea = CEA::AllenOverlap()(left_cea, right_cea);
+  }
+
+
+  void visit(AllenStartsFormula& formula) override {
+    formula.left->accept_visitor(*this);
+    CEA::LogicalCEA left_cea = std::move(current_cea);
+    formula.right->accept_visitor(*this);
+    CEA::LogicalCEA right_cea = std::move(current_cea);
+    current_cea = CEA::AllenStarts()(left_cea, right_cea);
   }
 
   void visit(ProjectionFormula& formula) override {
