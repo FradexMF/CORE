@@ -45,5 +45,9 @@ struct ComplexEvent {
   void serialize(Archive& archive) {
     archive(start, end, events);
   }
+
+
+  //probar esto en version actual y hacer push e issue con el tema
+  //construction starts y tests
 };
 }  // namespace CORE::Types

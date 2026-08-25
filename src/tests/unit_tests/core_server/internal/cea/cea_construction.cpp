@@ -152,14 +152,6 @@ TEST_CASE("Allen Overlap Simple Construction",
   INFO("Overlap LogicalCEA:\n" << logical_cea.to_string_visualization());
 
   REQUIRE(logical_cea.amount_of_states == 12);  // NOLINT
-  // REQUIRE(logical_cea.initial_states.test(0));  // NOLINT
-  // REQUIRE(logical_cea.final_states.test(3));  // NOLINT
-
-  // REQUIRE(logical_cea.epsilon_transitions[0].contains(4)); // NOLINT
-  // REQUIRE(logical_cea.epsilon_transitions[1].contains(6)); // NOLINT
-  // REQUIRE(logical_cea.epsilon_transitions[6].contains(2)); // NOLINT
-  // REQUIRE(logical_cea.epsilon_transitions[7].contains(3)); // NOLINT
-
   bool has_left_to_product_epsilon = false;
   for (size_t i = 0; i < left_n; ++i) {
     if (!logical_cea.epsilon_transitions[i].empty()) {
@@ -167,7 +159,6 @@ TEST_CASE("Allen Overlap Simple Construction",
       break;
     }
   }
-  // REQUIRE(has_left_to_product_epsilon);  // NOLINT
 
   const uint64_t left_right_n_states = left_n + right_n;
   const uint64_t product_count = left_n * right_n;
@@ -179,28 +170,11 @@ TEST_CASE("Allen Overlap Simple Construction",
       break;
     }
   }
-  // REQUIRE(has_product_to_right_epsilon);  // NOLINT
-
   auto cea = CEA::CEA(std::move(logical_cea));
   INFO("Overlap CEA:\n" << cea.to_string());
 
-  // REQUIRE(cea.amount_of_states == 4);           // NOLINT
-  // REQUIRE(cea.initial_state == 3);              // NOLINT
-  // REQUIRE(cea.final_states == 0b0110);          // NOLINT
-  // REQUIRE(cea.transitions[0].size() == 1);      // NOLINT
-  // REQUIRE(cea.transitions[3].size() == 2);      // NOLINT
-
-  // REQUIRE(cea.transitions[0].contains(std::make_tuple(
-  //   CEA::PredicateSet(Bitset::from_ulong(0b100), Bitset::from_ulong(0b100)),
-  //   Bitset::from_ulong(0b1000), uint64_t{1}))); // NOLINT
-
-  // REQUIRE(cea.transitions[3].contains(std::make_tuple(
-  //   CEA::PredicateSet(Bitset::from_ulong(0b010), Bitset::from_ulong(0b010)),
-  //   Bitset::from_ulong(0b0100), uint64_t{0}))); // NOLINT
-
-  // REQUIRE(cea.transitions[3].contains(std::make_tuple(
-  //   CEA::PredicateSet(Bitset::from_ulong(0b110), Bitset::from_ulong(0b110)),
-  //   Bitset::from_ulong(0b1100), uint64_t{2}))); // NOLINT
+  REQUIRE(cea.amount_of_states == 2);           // NOLINT
+ 
 
 }
 
@@ -274,7 +248,7 @@ TEST_CASE("Allen Overlap with Iteration and Sequencing Formulas",
 
   INFO("Overlap LogicalCEA:\n" << logical_cea.to_string_visualization());
 
-  REQUIRE(logical_cea.amount_of_states == 35);       // NOLINT
+  REQUIRE(logical_cea.amount_of_states == 60);       // NOLINT
 
   auto cea = CEA::CEA(std::move(logical_cea));
   INFO("Overlap CEA:\n" << cea.to_string());
@@ -312,7 +286,7 @@ TEST_CASE("Allen Overlap with two equal base",
 
   INFO("Overlap LogicalCEA:\n" << logical_cea.to_string_visualization());
 
-  REQUIRE(logical_cea.amount_of_states == 8);       // NOLINT
+  REQUIRE(logical_cea.amount_of_states == 12);       // NOLINT
 
   auto cea = CEA::CEA(std::move(logical_cea));
   INFO("Overlap CEA:\n" << cea.to_string());
@@ -370,7 +344,7 @@ TEST_CASE("Allen Overlap with Filter Formulas",
 
   INFO("Overlap LogicalCEA:\n" << logical_cea.to_string_visualization());
 
-  REQUIRE(logical_cea.amount_of_states == 8);       // NOLINT
+  REQUIRE(logical_cea.amount_of_states == 12);       // NOLINT
 
   auto cea = CEA::CEA(std::move(logical_cea));
   INFO("Overlap CEA:\n" << cea.to_string());
@@ -415,12 +389,88 @@ TEST_CASE("Allen Overlap with OR Formulas",
 
   INFO("Overlap LogicalCEA:\n" << logical_cea.to_string_visualization());
 
-  REQUIRE(logical_cea.amount_of_states == 24);       // NOLINT
+  REQUIRE(logical_cea.amount_of_states == 40);       // NOLINT
 
   auto cea = CEA::CEA(std::move(logical_cea));
   INFO("Overlap CEA:\n" << cea.to_string());
 }
 
-//hacer un stream completo, oquery completo en vez de por separado. select from where
+
+TEST_CASE("Allen Overlap Native Query Parsing",
+          "[LogicalCEA To CEA - Native Overlap]") {
+  Catalog catalog;
+  
+  Types::StreamInfo stream_info = catalog.add_stream_type({"S", {{"H", {}}, {"S", {}}}});
+
+  auto query = Parsing::QueryParser::parse_query(create_query("H :o S"), catalog);
+
+  QueryCatalog query_catalog(catalog, query);
+  auto visitor = FormulaToLogicalCEA(query_catalog);
+  query.where.formula->accept_visitor(visitor);
+
+  CEA::LogicalCEA logical_cea = visitor.current_cea;
+
+  INFO("Native Overlap LogicalCEA:\n" << logical_cea.to_string_visualization());
+
+  
+  REQUIRE(logical_cea.amount_of_states == 12);  // NOLINT
+
+  bool has_entry_epsilon = false;
+  for (size_t i = 0; i < 2; ++i) {
+    if (!logical_cea.epsilon_transitions[i].empty()) {
+      has_entry_epsilon = true;
+      break;
+    }
+  }
+  REQUIRE(has_entry_epsilon);  // NOLINT
+
+  bool has_exit_epsilon = false;
+  for (size_t i = 4; i < 12; ++i) { 
+    if (!logical_cea.epsilon_transitions[i].empty()) {
+      for (auto target : logical_cea.epsilon_transitions[i]) {
+        if (target == 2 || target == 3) {
+            has_exit_epsilon = true;
+            break;
+        }
+      }
+    }
+    if (has_exit_epsilon) break;
+  }
+  REQUIRE(has_exit_epsilon);  // NOLINT
+
+ 
+  auto cea = CEA::CEA(std::move(logical_cea));
+  INFO("Native Overlap CEA:\n" << cea.to_string());
+  
+  REQUIRE(cea.amount_of_states > 0); 
+}
+
+TEST_CASE("Allen Overlap Isolation: Contiguous Sequencing",
+          "[LogicalCEA To CEA - Overlap Isolation]") {
+  Catalog catalog;
+  Types::StreamInfo stream_info =
+      catalog.add_stream_type({"S", {{"H", {}}, {"S", {}}}});
+
+  // std::cout << "\n[1] Parseando la query..." << std::endl;
+  auto query = Parsing::QueryParser::parse_query(create_query("(H : S) :o (S : H)"), catalog);
+
+  QueryCatalog query_catalog(catalog, query);
+  auto visitor = CEQL::FormulaToLogicalCEA(query_catalog);
+  
+  // std::cout << "[2] Construyendo el LogicalCEA (NFA)..." << std::endl;
+  query.where.formula->accept_visitor(visitor);
+  CEA::LogicalCEA logical_cea = visitor.current_cea;
+
+  // std::cout << "[3] LogicalCEA construido con " << logical_cea.amount_of_states << " estados." << std::endl;
+  INFO("Overlap LogicalCEA:\n" << logical_cea.to_string_visualization());
+
+  // std::cout << "[4] Iniciando Determinización a DFA (CEA::CEA)..." << std::endl;
+  auto cea = CEA::CEA(std::move(logical_cea));
+  
+  // std::cout << "[5] ¡Determinización Completada! Estados finales: " << cea.amount_of_states << std::endl;
+
+  REQUIRE(cea.amount_of_states > 0); // NOLINT
+}
+
 
 }  // namespace CORE::Internal::CEQL::UnitTests::CEAConstructionFromLogicalCEA

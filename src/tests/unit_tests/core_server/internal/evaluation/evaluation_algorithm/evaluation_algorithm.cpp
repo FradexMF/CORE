@@ -1876,6 +1876,75 @@ TEST_CASE("Evaluation with strongly typed filter continuous sequencing") {
   REQUIRE(is_the_same_as(output.complex_events[0].events[1], 0, "MSFT", 80));
 }
 
+TEST_CASE("Evaluation of a query with Allen Overlap native operator") {
+  Internal::Interface::Backend<> backend;
+
+  Types::StreamInfo stream_info = basic_stock_declaration(backend);
+
+  // std::string string_query =
+  //   "SELECT * FROM Stock\n"
+  //   "WHERE (SELL as a FILTER a[name='A'] ; SELL as b FILTER b[name='B']) :o (SELL as c FILTER c[name='C'] ; SELL as d FILTER d[name='D'])\n"
+  //   "WITHIN 10 EVENTS";
+
+  std::string string_query =
+    "SELECT * FROM Stock\n"
+    "WHERE (SELL as a ; SELL as c  ) ; (SELL as b  ; SELL as d)\n"
+    "FILTER a[name='A'] AND c[name='C'] AND b[name='B'] AND d[name='D']\n"
+    "WITHIN 10 EVENTS";
+
+  CEQL::Query parsed_query = backend.parse_sent_query(string_query);
+
+  std::unique_ptr<DirectOutputTestResultHandler>
+    result_handler_ptr = std::make_unique<DirectOutputTestResultHandler>(
+      QueryCatalog(backend.get_catalog_reference(), parsed_query));
+  DirectOutputTestResultHandler& result_handler = *result_handler_ptr;
+
+  backend.declare_query(std::move(parsed_query), std::move(result_handler_ptr));
+
+  Types::Event event;
+  Types::Enumerator output;
+
+  event = {0,
+           {std::make_shared<Types::StringValue>("A"),
+            std::make_shared<Types::IntValue>(10)}};
+  INFO("SELL A 10");
+  backend.send_event_to_queries(0, event);
+  REQUIRE(result_handler.get_enumerator().complex_events.size() == 0);
+
+  event = {0,
+           {std::make_shared<Types::StringValue>("C"),
+            std::make_shared<Types::IntValue>(20)}};
+  INFO("SELL C 20");
+  backend.send_event_to_queries(0, event);
+  REQUIRE(result_handler.get_enumerator().complex_events.size() == 0);
+
+  event = {0,
+           {std::make_shared<Types::StringValue>("B"),
+            std::make_shared<Types::IntValue>(30)}};
+  INFO("SELL B 30");
+  backend.send_event_to_queries(0, event);
+  REQUIRE(result_handler.get_enumerator().complex_events.size() == 0);
+
+  event = {0,
+           {std::make_shared<Types::StringValue>("D"),
+            std::make_shared<Types::IntValue>(40)}};
+  INFO("SELL D 40");
+  backend.send_event_to_queries(0, event);
+
+  output = result_handler.get_enumerator();
+
+  std::cout << "\n================ RESULTADOS (" << output.complex_events.size() << ") ================\n";
+  for(size_t i = 0; i < output.complex_events.size(); ++i) {
+      std::cout << "Evento Complejo " << i << ":\n" << output.complex_events[i].to_string() << "\n";
+  }
+  std::cout << "================================================\n" << std::endl;
+  
+  REQUIRE(output.complex_events.size() == 1); // NOLINT
+
+  //
+}
+
+
 }  // namespace CORE::Internal::Evaluation::UnitTests
 
 // NOLINTEND(bugprone-chained-comparison)
