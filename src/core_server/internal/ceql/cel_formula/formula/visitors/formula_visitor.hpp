@@ -15,6 +15,7 @@ class ContiguousIterationFormula;      // :+
 class ProjectionFormula;               // π
 class NotEventTypeFormula;             // NOT
 class AllenOverlapFormula;             // :o
+class AllenStartsFormula;             // :s
 
 class FormulaVisitor {
  public:
@@ -32,6 +33,7 @@ class FormulaVisitor {
   virtual void visit(ContiguousIterationFormula&) {throw std::logic_error("visit ContiguousIterationFormula not implemented");}
   virtual void visit(NotEventTypeFormula&)  {throw std::logic_error("visit NotEventTypeFormula not implemented.");}
   virtual void visit(AllenOverlapFormula&) {throw std::logic_error("visit AllenOverlapFormula not implemented.");}
+  virtual void visit(AllenStartsFormula&) {throw std::logic_error("visit AllenStartsFormula not implemented.");}
 
   // clang-format on
 };

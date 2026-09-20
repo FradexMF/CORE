@@ -18,6 +18,7 @@
 #include "core_server/internal/ceql/cel_formula/formula/not_event_type_formula.hpp"
 #include "core_server/internal/ceql/cel_formula/formula/or_formula.hpp"
 #include "core_server/internal/ceql/cel_formula/formula/allen_overlap_formula.hpp"
+#include "core_server/internal/ceql/cel_formula/formula/allen_starts_formula.hpp"
 #include "core_server/internal/ceql/cel_formula/formula/visitors/formula_visitor.hpp"
 #include "core_server/internal/ceql/query/where.hpp"
 #include "core_server/internal/coordination/catalog.hpp"
@@ -115,6 +116,16 @@ class WhereVisitor : public CEQLQueryParserBaseVisitor {
                                                                   std::move(formula));
     return {};
   }
+
+  virtual std::any visitAllen_starts_formula(
+    CEQLQueryParser::Allen_starts_formulaContext* ctx) override {
+    visit(ctx->cel_formula()[0]);
+    auto first_formula = std::move(formula);
+    visit(ctx->cel_formula()[1]);
+    formula = std::make_unique<CEQL::AllenStartsFormula>(
+        std::move(first_formula), std::move(formula));
+    return {};
+}
 
   virtual std::any visitContiguous_sequencing_cel_formula(
     CEQLQueryParser::Contiguous_sequencing_cel_formulaContext* ctx) override {
