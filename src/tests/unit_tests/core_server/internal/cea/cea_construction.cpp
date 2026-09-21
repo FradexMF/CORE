@@ -120,9 +120,6 @@ TEST_CASE("Remove Epsilons of Sequencing and non_contiguous Iteration Combined",
   REQUIRE(cea.final_states == 0b001);   // NOLINT
 }
 
-
-
-
 TEST_CASE("Allen Overlap Simple Construction",
           "[LogicalCEA To CEA - Overlap]") {
   Catalog catalog;
@@ -152,6 +149,7 @@ TEST_CASE("Allen Overlap Simple Construction",
   INFO("Overlap LogicalCEA:\n" << logical_cea.to_string_visualization());
 
   REQUIRE(logical_cea.amount_of_states == 12);  // NOLINT
+  
   bool has_left_to_product_epsilon = false;
   for (size_t i = 0; i < left_n; ++i) {
     if (!logical_cea.epsilon_transitions[i].empty()) {
@@ -170,14 +168,12 @@ TEST_CASE("Allen Overlap Simple Construction",
       break;
     }
   }
+  
   auto cea = CEA::CEA(std::move(logical_cea));
   INFO("Overlap CEA:\n" << cea.to_string());
 
   REQUIRE(cea.amount_of_states == 2);           // NOLINT
- 
-
 }
-
 
 TEST_CASE("Allen Overlap with Sequencing Formulas",
           "[LogicalCEA To CEA - Overlap]") {
@@ -197,9 +193,6 @@ TEST_CASE("Allen Overlap with Sequencing Formulas",
   query2.where.formula->accept_visitor(visitor2);
   CEA::LogicalCEA cea_right = visitor2.current_cea;
 
-  const uint64_t left_n = cea_left.amount_of_states;
-  const uint64_t right_n = cea_right.amount_of_states;
-
   INFO("Left LogicalCEA:\n" << cea_left.to_string_visualization());
   INFO("Right LogicalCEA:\n" << cea_right.to_string_visualization());
 
@@ -212,13 +205,8 @@ TEST_CASE("Allen Overlap with Sequencing Formulas",
 
   auto cea = CEA::CEA(std::move(logical_cea));
   INFO("Overlap CEA:\n" << cea.to_string());
-
 }
 
-
-
-//HS+
-//S+H
 TEST_CASE("Allen Overlap with Iteration and Sequencing Formulas",
           "[LogicalCEA To CEA - Overlap Iteration]") {
   Catalog catalog;
@@ -237,9 +225,6 @@ TEST_CASE("Allen Overlap with Iteration and Sequencing Formulas",
   query2.where.formula->accept_visitor(visitor2);
   CEA::LogicalCEA cea_right = visitor2.current_cea;
 
-  const uint64_t left_n = cea_left.amount_of_states;
-  const uint64_t right_n = cea_right.amount_of_states;
-
   INFO("Left LogicalCEA (H ; S+):\n" << cea_left.to_string_visualization());
   INFO("Right LogicalCEA (S+ ; H):\n" << cea_right.to_string_visualization());
 
@@ -254,9 +239,6 @@ TEST_CASE("Allen Overlap with Iteration and Sequencing Formulas",
   INFO("Overlap CEA:\n" << cea.to_string());
 }
 
-
-//H
-//H
 TEST_CASE("Allen Overlap with two equal base",
           "[LogicalCEA To CEA - Overlap Equal Base]") {
   Catalog catalog;
@@ -275,9 +257,6 @@ TEST_CASE("Allen Overlap with two equal base",
   query2.where.formula->accept_visitor(visitor2);
   CEA::LogicalCEA cea_right = visitor2.current_cea;
 
-  const uint64_t left_n = cea_left.amount_of_states;
-  const uint64_t right_n = cea_right.amount_of_states;
-
   INFO("Left LogicalCEA (H):\n" << cea_left.to_string_visualization());
   INFO("Right LogicalCEA (H):\n" << cea_right.to_string_visualization());
 
@@ -292,8 +271,6 @@ TEST_CASE("Allen Overlap with two equal base",
   INFO("Overlap CEA:\n" << cea.to_string());
 }
 
-//uno con FILTER:
-// (H FILTER algo) x2
 TEST_CASE("Allen Overlap with Filter Formulas",
           "[LogicalCEA To CEA - Overlap Filter]") {
   Catalog catalog;
@@ -336,6 +313,7 @@ TEST_CASE("Allen Overlap with Filter Formulas",
   auto visitor2 = FormulaToLogicalCEA(query_catalog2);
   query2.where.formula->accept_visitor(visitor2);
   CEA::LogicalCEA cea_right = visitor2.current_cea;
+  
   INFO("Left LogicalCEA (Filter):\n" << cea_left.to_string_visualization());
   INFO("Right LogicalCEA (Filter):\n" << cea_right.to_string_visualization());
 
@@ -350,8 +328,6 @@ TEST_CASE("Allen Overlap with Filter Formulas",
   INFO("Overlap CEA:\n" << cea.to_string());
 }
 
-//H or S
-//R or H    
 TEST_CASE("Allen Overlap with OR Formulas",
           "[LogicalCEA To CEA - Overlap OR]") {
   Catalog catalog;
@@ -395,7 +371,6 @@ TEST_CASE("Allen Overlap with OR Formulas",
   INFO("Overlap CEA:\n" << cea.to_string());
 }
 
-
 TEST_CASE("Allen Overlap Native Query Parsing",
           "[LogicalCEA To CEA - Native Overlap]") {
   Catalog catalog;
@@ -412,7 +387,6 @@ TEST_CASE("Allen Overlap Native Query Parsing",
 
   INFO("Native Overlap LogicalCEA:\n" << logical_cea.to_string_visualization());
 
-  
   REQUIRE(logical_cea.amount_of_states == 12);  // NOLINT
 
   bool has_entry_epsilon = false;
@@ -438,7 +412,6 @@ TEST_CASE("Allen Overlap Native Query Parsing",
   }
   REQUIRE(has_exit_epsilon);  // NOLINT
 
- 
   auto cea = CEA::CEA(std::move(logical_cea));
   INFO("Native Overlap CEA:\n" << cea.to_string());
   
@@ -451,24 +424,18 @@ TEST_CASE("Allen Overlap Isolation: Contiguous Sequencing",
   Types::StreamInfo stream_info =
       catalog.add_stream_type({"S", {{"H", {}}, {"S", {}}}});
 
-  // std::cout << "\n[1] Parseando la query..." << std::endl;
   auto query = Parsing::QueryParser::parse_query(create_query("(H : S) :o (S : H)"), catalog);
 
   QueryCatalog query_catalog(catalog, query);
   auto visitor = CEQL::FormulaToLogicalCEA(query_catalog);
   
-  // std::cout << "[2] Construyendo el LogicalCEA (NFA)..." << std::endl;
   query.where.formula->accept_visitor(visitor);
   CEA::LogicalCEA logical_cea = visitor.current_cea;
 
-  // std::cout << "[3] LogicalCEA construido con " << logical_cea.amount_of_states << " estados." << std::endl;
   INFO("Overlap LogicalCEA:\n" << logical_cea.to_string_visualization());
 
-  // std::cout << "[4] Iniciando Determinización a DFA (CEA::CEA)..." << std::endl;
   auto cea = CEA::CEA(std::move(logical_cea));
   
-  // std::cout << "[5] ¡Determinización Completada! Estados finales: " << cea.amount_of_states << std::endl;
-
   REQUIRE(cea.amount_of_states > 0); // NOLINT
 }
 
