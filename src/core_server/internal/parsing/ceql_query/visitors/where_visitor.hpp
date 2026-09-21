@@ -19,6 +19,8 @@
 #include "core_server/internal/ceql/cel_formula/formula/or_formula.hpp"
 #include "core_server/internal/ceql/cel_formula/formula/allen_overlap_formula.hpp"
 #include "core_server/internal/ceql/cel_formula/formula/allen_starts_formula.hpp"
+#include "core_server/internal/ceql/cel_formula/formula/allen_during_formula.hpp"
+#include "core_server/internal/ceql/cel_formula/formula/allen_finishes_formula.hpp"
 #include "core_server/internal/ceql/cel_formula/formula/visitors/formula_visitor.hpp"
 #include "core_server/internal/ceql/query/where.hpp"
 #include "core_server/internal/coordination/catalog.hpp"
@@ -126,6 +128,26 @@ class WhereVisitor : public CEQLQueryParserBaseVisitor {
         std::move(first_formula), std::move(formula));
     return {};
 }
+
+  virtual std::any visitAllen_during_formula(
+    CEQLQueryParser::Allen_during_formulaContext* ctx) override {
+    visit(ctx->cel_formula()[0]);
+    auto first_formula = std::move(formula);
+    visit(ctx->cel_formula()[1]);
+    formula = std::make_unique<CEQL::AllenDuringFormula>(
+        std::move(first_formula), std::move(formula));
+    return {};
+}
+
+  virtual std::any visitAllen_finishes_formula(
+    CEQLQueryParser::Allen_finishes_formulaContext* ctx) override {
+    visit(ctx->cel_formula()[0]);
+    auto first_formula = std::move(formula);
+    visit(ctx->cel_formula()[1]);
+    formula = std::make_unique<CEQL::AllenFinishesFormula>(
+        std::move(first_formula), std::move(formula));
+    return {};
+  }
 
   virtual std::any visitContiguous_sequencing_cel_formula(
     CEQLQueryParser::Contiguous_sequencing_cel_formulaContext* ctx) override {

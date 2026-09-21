@@ -22,9 +22,10 @@ public:
     EQ = 41, NEQ = 42, SEMICOLON = 43, COLON = 44, COMMA = 45, DOUBLE_DOT = 46, 
     LEFT_PARENTHESIS = 47, RIGHT_PARENTHESIS = 48, LEFT_SQUARE_BRACKET = 49, 
     RIGHT_SQUARE_BRACKET = 50, LEFT_CURLY_BRACKET = 51, RIGHT_CURLY_BRACKET = 52, 
-    COLON_PLUS = 53, COLON_O = 54, COLON_S = 55, IDENTIFIER = 56, DOUBLE_LITERAL = 57, 
-    INTEGER_LITERAL = 58, NUMERICAL_EXPONENT = 59, STRING_LITERAL = 60, 
-    SINGLE_LINE_COMMENT = 61, MULTILINE_COMMENT = 62, SPACES = 63, UNEXPECTED_CHAR = 64
+    COLON_PLUS = 53, COLON_O = 54, COLON_S = 55, COLON_D = 56, COLON_F = 57, 
+    IDENTIFIER = 58, DOUBLE_LITERAL = 59, INTEGER_LITERAL = 60, NUMERICAL_EXPONENT = 61, 
+    STRING_LITERAL = 62, SINGLE_LINE_COMMENT = 63, MULTILINE_COMMENT = 64, 
+    SPACES = 65, UNEXPECTED_CHAR = 66
   };
 
   enum {
@@ -312,6 +313,60 @@ public:
     virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
   };
 
+  class  Filter_cel_formulaContext : public Cel_formulaContext {
+  public:
+    Filter_cel_formulaContext(Cel_formulaContext *ctx);
+
+    Cel_formulaContext *cel_formula();
+    antlr4::tree::TerminalNode *K_FILTER();
+    FilterContext *filter();
+
+    virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+  };
+
+  class  Allen_during_formulaContext : public Cel_formulaContext {
+  public:
+    Allen_during_formulaContext(Cel_formulaContext *ctx);
+
+    std::vector<Cel_formulaContext *> cel_formula();
+    Cel_formulaContext* cel_formula(size_t i);
+    antlr4::tree::TerminalNode *COLON_D();
+
+    virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+  };
+
+  class  As_cel_formulaContext : public Cel_formulaContext {
+  public:
+    As_cel_formulaContext(Cel_formulaContext *ctx);
+
+    Cel_formulaContext *cel_formula();
+    antlr4::tree::TerminalNode *K_AS();
+    Event_nameContext *event_name();
+
+    virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+  };
+
+  class  Non_contiguous_sequencing_cel_formulaContext : public Cel_formulaContext {
+  public:
+    Non_contiguous_sequencing_cel_formulaContext(Cel_formulaContext *ctx);
+
+    std::vector<Cel_formulaContext *> cel_formula();
+    Cel_formulaContext* cel_formula(size_t i);
+    antlr4::tree::TerminalNode *SEMICOLON();
+
+    virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+  };
+
+  class  Non_contiguous_iteration_cel_formulaContext : public Cel_formulaContext {
+  public:
+    Non_contiguous_iteration_cel_formulaContext(Cel_formulaContext *ctx);
+
+    Cel_formulaContext *cel_formula();
+    antlr4::tree::TerminalNode *PLUS();
+
+    virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+  };
+
   class  Not_event_type_atomic_cel_formulaContext : public Cel_formulaContext {
   public:
     Not_event_type_atomic_cel_formulaContext(Cel_formulaContext *ctx);
@@ -339,6 +394,17 @@ public:
 
     Cel_formulaContext *cel_formula();
     antlr4::tree::TerminalNode *COLON_PLUS();
+
+    virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+  };
+
+  class  Allen_finishes_formulaContext : public Cel_formulaContext {
+  public:
+    Allen_finishes_formulaContext(Cel_formulaContext *ctx);
+
+    std::vector<Cel_formulaContext *> cel_formula();
+    Cel_formulaContext* cel_formula(size_t i);
+    antlr4::tree::TerminalNode *COLON_F();
 
     virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
   };
@@ -376,17 +442,6 @@ public:
     virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
   };
 
-  class  Filter_cel_formulaContext : public Cel_formulaContext {
-  public:
-    Filter_cel_formulaContext(Cel_formulaContext *ctx);
-
-    Cel_formulaContext *cel_formula();
-    antlr4::tree::TerminalNode *K_FILTER();
-    FilterContext *filter();
-
-    virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
-  };
-
   class  Or_cel_formulaContext : public Cel_formulaContext {
   public:
     Or_cel_formulaContext(Cel_formulaContext *ctx);
@@ -394,38 +449,6 @@ public:
     std::vector<Cel_formulaContext *> cel_formula();
     Cel_formulaContext* cel_formula(size_t i);
     antlr4::tree::TerminalNode *K_OR();
-
-    virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
-  };
-
-  class  As_cel_formulaContext : public Cel_formulaContext {
-  public:
-    As_cel_formulaContext(Cel_formulaContext *ctx);
-
-    Cel_formulaContext *cel_formula();
-    antlr4::tree::TerminalNode *K_AS();
-    Event_nameContext *event_name();
-
-    virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
-  };
-
-  class  Non_contiguous_sequencing_cel_formulaContext : public Cel_formulaContext {
-  public:
-    Non_contiguous_sequencing_cel_formulaContext(Cel_formulaContext *ctx);
-
-    std::vector<Cel_formulaContext *> cel_formula();
-    Cel_formulaContext* cel_formula(size_t i);
-    antlr4::tree::TerminalNode *SEMICOLON();
-
-    virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
-  };
-
-  class  Non_contiguous_iteration_cel_formulaContext : public Cel_formulaContext {
-  public:
-    Non_contiguous_iteration_cel_formulaContext(Cel_formulaContext *ctx);
-
-    Cel_formulaContext *cel_formula();
-    antlr4::tree::TerminalNode *PLUS();
 
     virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
   };

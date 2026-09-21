@@ -47,11 +47,23 @@ public:
 
     virtual std::any visitContiguous_sequencing_cel_formula(CEQLQueryParser::Contiguous_sequencing_cel_formulaContext *context) = 0;
 
+    virtual std::any visitFilter_cel_formula(CEQLQueryParser::Filter_cel_formulaContext *context) = 0;
+
+    virtual std::any visitAllen_during_formula(CEQLQueryParser::Allen_during_formulaContext *context) = 0;
+
+    virtual std::any visitAs_cel_formula(CEQLQueryParser::As_cel_formulaContext *context) = 0;
+
+    virtual std::any visitNon_contiguous_sequencing_cel_formula(CEQLQueryParser::Non_contiguous_sequencing_cel_formulaContext *context) = 0;
+
+    virtual std::any visitNon_contiguous_iteration_cel_formula(CEQLQueryParser::Non_contiguous_iteration_cel_formulaContext *context) = 0;
+
     virtual std::any visitNot_event_type_atomic_cel_formula(CEQLQueryParser::Not_event_type_atomic_cel_formulaContext *context) = 0;
 
     virtual std::any visitEvent_type_cel_formula(CEQLQueryParser::Event_type_cel_formulaContext *context) = 0;
 
     virtual std::any visitContiguous_iteration_cel_formula(CEQLQueryParser::Contiguous_iteration_cel_formulaContext *context) = 0;
+
+    virtual std::any visitAllen_finishes_formula(CEQLQueryParser::Allen_finishes_formulaContext *context) = 0;
 
     virtual std::any visitAllen_starts_formula(CEQLQueryParser::Allen_starts_formulaContext *context) = 0;
 
@@ -59,15 +71,7 @@ public:
 
     virtual std::any visitAllen_overlap_formula(CEQLQueryParser::Allen_overlap_formulaContext *context) = 0;
 
-    virtual std::any visitFilter_cel_formula(CEQLQueryParser::Filter_cel_formulaContext *context) = 0;
-
     virtual std::any visitOr_cel_formula(CEQLQueryParser::Or_cel_formulaContext *context) = 0;
-
-    virtual std::any visitAs_cel_formula(CEQLQueryParser::As_cel_formulaContext *context) = 0;
-
-    virtual std::any visitNon_contiguous_sequencing_cel_formula(CEQLQueryParser::Non_contiguous_sequencing_cel_formulaContext *context) = 0;
-
-    virtual std::any visitNon_contiguous_iteration_cel_formula(CEQLQueryParser::Non_contiguous_iteration_cel_formulaContext *context) = 0;
 
     virtual std::any visitPartition_list(CEQLQueryParser::Partition_listContext *context) = 0;
 

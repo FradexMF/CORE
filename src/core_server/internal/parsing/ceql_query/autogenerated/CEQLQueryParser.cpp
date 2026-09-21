@@ -58,7 +58,7 @@ void ceqlqueryparserParserInitialize() {
       "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "'%'", 
       "'+'", "'-'", "'*'", "'/'", "'<'", "'<='", "'>'", "'>='", "", "", 
       "';'", "':'", "','", "'..'", "'('", "')'", "'['", "']'", "'{'", "'}'", 
-      "':+'", "':o'", "':s'"
+      "':+'", "':o'", "':s'", "':d'", "':f'"
     },
     std::vector<std::string>{
       "", "K_ALL", "K_AND", "K_ANY", "K_AS", "K_BY", "K_CONSUME", "K_LIMIT", 
@@ -70,13 +70,13 @@ void ceqlqueryparserParserInitialize() {
       "NEQ", "SEMICOLON", "COLON", "COMMA", "DOUBLE_DOT", "LEFT_PARENTHESIS", 
       "RIGHT_PARENTHESIS", "LEFT_SQUARE_BRACKET", "RIGHT_SQUARE_BRACKET", 
       "LEFT_CURLY_BRACKET", "RIGHT_CURLY_BRACKET", "COLON_PLUS", "COLON_O", 
-      "COLON_S", "IDENTIFIER", "DOUBLE_LITERAL", "INTEGER_LITERAL", "NUMERICAL_EXPONENT", 
-      "STRING_LITERAL", "SINGLE_LINE_COMMENT", "MULTILINE_COMMENT", "SPACES", 
-      "UNEXPECTED_CHAR"
+      "COLON_S", "COLON_D", "COLON_F", "IDENTIFIER", "DOUBLE_LITERAL", "INTEGER_LITERAL", 
+      "NUMERICAL_EXPONENT", "STRING_LITERAL", "SINGLE_LINE_COMMENT", "MULTILINE_COMMENT", 
+      "SPACES", "UNEXPECTED_CHAR"
     }
   );
   static const int32_t serializedATNSegment[] = {
-  	4,1,64,444,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,6,2,
+  	4,1,66,450,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,6,2,
   	7,7,7,2,8,7,8,2,9,7,9,2,10,7,10,2,11,7,11,2,12,7,12,2,13,7,13,2,14,7,
   	14,2,15,7,15,2,16,7,16,2,17,7,17,2,18,7,18,2,19,7,19,2,20,7,20,2,21,7,
   	21,2,22,7,22,2,23,7,23,2,24,7,24,2,25,7,25,2,26,7,26,2,27,7,27,2,28,7,
@@ -88,142 +88,145 @@ void ceqlqueryparserParserInitialize() {
   	4,10,4,12,4,133,9,4,3,4,135,8,4,1,5,1,5,1,5,1,5,5,5,141,8,5,10,5,12,5,
   	144,9,5,3,5,146,8,5,1,6,1,6,1,6,1,6,1,6,1,6,1,6,1,6,1,6,1,6,1,6,3,6,159,
   	8,6,1,6,1,6,1,6,1,6,1,6,1,6,1,6,1,6,1,6,1,6,1,6,1,6,1,6,1,6,1,6,1,6,1,
-  	6,1,6,1,6,1,6,1,6,1,6,1,6,1,6,1,6,5,6,186,8,6,10,6,12,6,189,9,6,1,7,1,
-  	7,1,7,1,7,1,7,1,7,1,7,1,7,3,7,199,8,7,1,8,1,8,1,8,5,8,204,8,8,10,8,12,
-  	8,207,9,8,1,9,1,9,1,9,3,9,212,8,9,1,10,1,10,1,11,1,11,1,11,1,11,1,11,
-  	1,11,1,11,1,11,1,11,1,11,3,11,226,8,11,1,11,1,11,1,11,1,11,1,11,1,11,
-  	5,11,234,8,11,10,11,12,11,237,9,11,1,12,1,12,1,12,1,12,1,12,1,12,1,12,
-  	1,12,1,12,1,12,1,12,1,12,1,12,1,12,1,12,1,12,1,12,1,12,1,12,1,12,1,12,
-  	1,12,1,12,3,12,262,8,12,1,12,1,12,1,12,1,12,1,12,1,12,1,12,1,12,1,12,
-  	1,12,1,12,3,12,275,8,12,1,12,1,12,1,12,1,12,1,12,1,12,5,12,283,8,12,10,
-  	12,12,12,286,9,12,1,13,1,13,3,13,290,8,13,1,14,1,14,1,14,1,14,1,14,1,
-  	14,1,14,1,14,1,14,3,14,301,8,14,1,14,1,14,1,14,1,14,1,14,1,14,5,14,309,
-  	8,14,10,14,12,14,312,9,14,1,15,1,15,1,15,1,15,1,15,1,15,1,15,1,15,3,15,
-  	322,8,15,1,16,1,16,1,16,5,16,327,8,16,10,16,12,16,330,9,16,1,16,1,16,
-  	1,16,1,16,1,16,1,16,1,16,1,16,1,16,1,16,1,16,1,16,1,16,3,16,345,8,16,
-  	1,17,1,17,1,17,5,17,350,8,17,10,17,12,17,353,9,17,1,18,1,18,1,18,3,18,
-  	358,8,18,1,19,1,19,1,19,1,20,3,20,364,8,20,1,20,3,20,367,8,20,1,20,3,
-  	20,370,8,20,1,21,1,21,1,21,1,22,1,22,1,22,1,23,1,23,1,23,1,24,1,24,1,
-  	24,1,24,1,24,1,25,1,25,1,25,3,25,389,8,25,1,26,1,26,1,26,1,26,1,26,3,
-  	26,396,8,26,1,27,1,27,1,27,3,27,401,8,27,1,27,1,27,1,28,1,28,1,29,1,29,
-  	1,29,1,29,1,29,1,29,5,29,413,8,29,10,29,12,29,416,9,29,1,30,1,30,1,31,
-  	1,31,1,31,5,31,423,8,31,10,31,12,31,426,9,31,1,32,1,32,1,33,1,33,1,34,
-  	1,34,1,35,1,35,3,35,436,8,35,1,36,1,36,1,37,1,37,1,38,1,38,1,38,0,5,12,
-  	22,24,28,58,39,0,2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,34,36,38,
-  	40,42,44,46,48,50,52,54,56,58,60,62,64,66,68,70,72,74,76,0,5,1,0,37,42,
-  	1,0,41,42,1,0,33,34,2,0,32,32,35,36,2,0,1,6,8,31,472,0,82,1,0,0,0,2,87,
-  	1,0,0,0,4,90,1,0,0,0,6,122,1,0,0,0,8,134,1,0,0,0,10,145,1,0,0,0,12,158,
-  	1,0,0,0,14,190,1,0,0,0,16,200,1,0,0,0,18,211,1,0,0,0,20,213,1,0,0,0,22,
-  	225,1,0,0,0,24,274,1,0,0,0,26,289,1,0,0,0,28,300,1,0,0,0,30,321,1,0,0,
-  	0,32,344,1,0,0,0,34,346,1,0,0,0,36,357,1,0,0,0,38,359,1,0,0,0,40,363,
-  	1,0,0,0,42,371,1,0,0,0,44,374,1,0,0,0,46,377,1,0,0,0,48,380,1,0,0,0,50,
-  	385,1,0,0,0,52,390,1,0,0,0,54,400,1,0,0,0,56,404,1,0,0,0,58,406,1,0,0,
-  	0,60,417,1,0,0,0,62,419,1,0,0,0,64,427,1,0,0,0,66,429,1,0,0,0,68,431,
-  	1,0,0,0,70,435,1,0,0,0,72,437,1,0,0,0,74,439,1,0,0,0,76,441,1,0,0,0,78,
-  	81,3,4,2,0,79,81,3,2,1,0,80,78,1,0,0,0,80,79,1,0,0,0,81,84,1,0,0,0,82,
-  	80,1,0,0,0,82,83,1,0,0,0,83,85,1,0,0,0,84,82,1,0,0,0,85,86,5,0,0,1,86,
-  	1,1,0,0,0,87,88,5,64,0,0,88,89,6,1,-1,0,89,3,1,0,0,0,90,92,5,26,0,0,91,
-  	93,3,6,3,0,92,91,1,0,0,0,92,93,1,0,0,0,93,94,1,0,0,0,94,95,3,8,4,0,95,
-  	96,3,10,5,0,96,97,5,30,0,0,97,101,3,12,6,0,98,99,5,23,0,0,99,100,5,5,
-  	0,0,100,102,3,14,7,0,101,98,1,0,0,0,101,102,1,0,0,0,102,105,1,0,0,0,103,
-  	104,5,31,0,0,104,106,3,36,18,0,105,103,1,0,0,0,105,106,1,0,0,0,106,110,
-  	1,0,0,0,107,108,5,6,0,0,108,109,5,5,0,0,109,111,3,18,9,0,110,107,1,0,
-  	0,0,110,111,1,0,0,0,111,114,1,0,0,0,112,113,5,7,0,0,113,115,3,20,10,0,
-  	114,112,1,0,0,0,114,115,1,0,0,0,115,5,1,0,0,0,116,123,5,1,0,0,117,123,
-  	5,3,0,0,118,123,5,15,0,0,119,123,5,17,0,0,120,123,5,19,0,0,121,123,5,
-  	28,0,0,122,116,1,0,0,0,122,117,1,0,0,0,122,118,1,0,0,0,122,119,1,0,0,
-  	0,122,120,1,0,0,0,122,121,1,0,0,0,123,7,1,0,0,0,124,135,5,35,0,0,125,
-  	135,5,20,0,0,126,131,3,52,26,0,127,128,5,45,0,0,128,130,3,52,26,0,129,
-  	127,1,0,0,0,130,133,1,0,0,0,131,129,1,0,0,0,131,132,1,0,0,0,132,135,1,
-  	0,0,0,133,131,1,0,0,0,134,124,1,0,0,0,134,125,1,0,0,0,134,126,1,0,0,0,
-  	135,9,1,0,0,0,136,137,5,12,0,0,137,142,3,60,30,0,138,139,5,45,0,0,139,
-  	141,3,60,30,0,140,138,1,0,0,0,141,144,1,0,0,0,142,140,1,0,0,0,142,143,
-  	1,0,0,0,143,146,1,0,0,0,144,142,1,0,0,0,145,136,1,0,0,0,145,146,1,0,0,
-  	0,146,11,1,0,0,0,147,148,6,6,-1,0,148,149,5,47,0,0,149,150,3,12,6,0,150,
-  	151,5,48,0,0,151,159,1,0,0,0,152,159,3,54,27,0,153,154,5,21,0,0,154,155,
-  	5,47,0,0,155,156,3,58,29,0,156,157,5,48,0,0,157,159,1,0,0,0,158,147,1,
-  	0,0,0,158,152,1,0,0,0,158,153,1,0,0,0,159,187,1,0,0,0,160,161,10,6,0,
-  	0,161,162,5,43,0,0,162,186,3,12,6,7,163,164,10,5,0,0,164,165,5,44,0,0,
-  	165,186,3,12,6,6,166,167,10,4,0,0,167,168,5,22,0,0,168,186,3,12,6,5,169,
-  	170,10,2,0,0,170,171,5,54,0,0,171,186,3,12,6,3,172,173,10,1,0,0,173,174,
-  	5,55,0,0,174,186,3,12,6,2,175,176,10,9,0,0,176,177,5,4,0,0,177,186,3,
-  	56,28,0,178,179,10,8,0,0,179,186,5,33,0,0,180,181,10,7,0,0,181,186,5,
-  	53,0,0,182,183,10,3,0,0,183,184,5,11,0,0,184,186,3,22,11,0,185,160,1,
-  	0,0,0,185,163,1,0,0,0,185,166,1,0,0,0,185,169,1,0,0,0,185,172,1,0,0,0,
-  	185,175,1,0,0,0,185,178,1,0,0,0,185,180,1,0,0,0,185,182,1,0,0,0,186,189,
-  	1,0,0,0,187,185,1,0,0,0,187,188,1,0,0,0,188,13,1,0,0,0,189,187,1,0,0,
-  	0,190,191,5,49,0,0,191,192,3,16,8,0,192,198,5,50,0,0,193,194,5,45,0,0,
-  	194,195,5,49,0,0,195,196,3,16,8,0,196,197,5,50,0,0,197,199,1,0,0,0,198,
-  	193,1,0,0,0,198,199,1,0,0,0,199,15,1,0,0,0,200,205,3,64,32,0,201,202,
-  	5,45,0,0,202,204,3,64,32,0,203,201,1,0,0,0,204,207,1,0,0,0,205,203,1,
-  	0,0,0,205,206,1,0,0,0,206,17,1,0,0,0,207,205,1,0,0,0,208,212,5,3,0,0,
-  	209,212,5,23,0,0,210,212,5,20,0,0,211,208,1,0,0,0,211,209,1,0,0,0,211,
-  	210,1,0,0,0,212,19,1,0,0,0,213,214,3,66,33,0,214,21,1,0,0,0,215,216,6,
-  	11,-1,0,216,217,5,47,0,0,217,218,3,22,11,0,218,219,5,48,0,0,219,226,1,
-  	0,0,0,220,221,3,54,27,0,221,222,5,49,0,0,222,223,3,24,12,0,223,224,5,
-  	50,0,0,224,226,1,0,0,0,225,215,1,0,0,0,225,220,1,0,0,0,226,235,1,0,0,
-  	0,227,228,10,2,0,0,228,229,5,2,0,0,229,234,3,22,11,3,230,231,10,1,0,0,
-  	231,232,5,22,0,0,232,234,3,22,11,2,233,227,1,0,0,0,233,230,1,0,0,0,234,
-  	237,1,0,0,0,235,233,1,0,0,0,235,236,1,0,0,0,236,23,1,0,0,0,237,235,1,
-  	0,0,0,238,239,6,12,-1,0,239,240,5,47,0,0,240,241,3,24,12,0,241,242,5,
-  	48,0,0,242,275,1,0,0,0,243,244,5,21,0,0,244,275,3,24,12,8,245,246,3,28,
-  	14,0,246,247,7,0,0,0,247,248,3,28,14,0,248,275,1,0,0,0,249,250,3,26,13,
-  	0,250,251,7,1,0,0,251,252,3,26,13,0,252,275,1,0,0,0,253,254,3,64,32,0,
-  	254,255,5,16,0,0,255,256,3,26,13,0,256,275,1,0,0,0,257,261,3,64,32,0,
-  	258,262,5,14,0,0,259,260,5,21,0,0,260,262,5,14,0,0,261,258,1,0,0,0,261,
-  	259,1,0,0,0,262,263,1,0,0,0,263,264,3,30,15,0,264,275,1,0,0,0,265,266,
-  	3,28,14,0,266,267,5,14,0,0,267,268,5,24,0,0,268,269,5,47,0,0,269,270,
-  	3,28,14,0,270,271,5,45,0,0,271,272,3,28,14,0,272,273,5,48,0,0,273,275,
-  	1,0,0,0,274,238,1,0,0,0,274,243,1,0,0,0,274,245,1,0,0,0,274,249,1,0,0,
-  	0,274,253,1,0,0,0,274,257,1,0,0,0,274,265,1,0,0,0,275,284,1,0,0,0,276,
-  	277,10,5,0,0,277,278,5,2,0,0,278,283,3,24,12,6,279,280,10,4,0,0,280,281,
-  	5,22,0,0,281,283,3,24,12,5,282,276,1,0,0,0,282,279,1,0,0,0,283,286,1,
-  	0,0,0,284,282,1,0,0,0,284,285,1,0,0,0,285,25,1,0,0,0,286,284,1,0,0,0,
-  	287,290,3,72,36,0,288,290,3,64,32,0,289,287,1,0,0,0,289,288,1,0,0,0,290,
-  	27,1,0,0,0,291,292,6,14,-1,0,292,293,5,47,0,0,293,294,3,28,14,0,294,295,
-  	5,48,0,0,295,301,1,0,0,0,296,301,3,70,35,0,297,301,3,64,32,0,298,299,
-  	7,2,0,0,299,301,3,28,14,3,300,291,1,0,0,0,300,296,1,0,0,0,300,297,1,0,
-  	0,0,300,298,1,0,0,0,301,310,1,0,0,0,302,303,10,2,0,0,303,304,7,3,0,0,
-  	304,309,3,28,14,3,305,306,10,1,0,0,306,307,7,2,0,0,307,309,3,28,14,2,
-  	308,302,1,0,0,0,308,305,1,0,0,0,309,312,1,0,0,0,310,308,1,0,0,0,310,311,
-  	1,0,0,0,311,29,1,0,0,0,312,310,1,0,0,0,313,314,5,51,0,0,314,315,3,32,
-  	16,0,315,316,5,52,0,0,316,322,1,0,0,0,317,318,5,51,0,0,318,319,3,34,17,
-  	0,319,320,5,52,0,0,320,322,1,0,0,0,321,313,1,0,0,0,321,317,1,0,0,0,322,
-  	31,1,0,0,0,323,328,3,70,35,0,324,325,5,45,0,0,325,327,3,70,35,0,326,324,
-  	1,0,0,0,327,330,1,0,0,0,328,326,1,0,0,0,328,329,1,0,0,0,329,345,1,0,0,
-  	0,330,328,1,0,0,0,331,332,3,66,33,0,332,333,5,46,0,0,333,334,3,66,33,
-  	0,334,345,1,0,0,0,335,336,3,68,34,0,336,337,5,46,0,0,337,338,3,68,34,
-  	0,338,345,1,0,0,0,339,340,3,70,35,0,340,341,5,46,0,0,341,345,1,0,0,0,
-  	342,343,5,46,0,0,343,345,3,70,35,0,344,323,1,0,0,0,344,331,1,0,0,0,344,
-  	335,1,0,0,0,344,339,1,0,0,0,344,342,1,0,0,0,345,33,1,0,0,0,346,351,3,
-  	72,36,0,347,348,5,45,0,0,348,350,3,72,36,0,349,347,1,0,0,0,350,353,1,
-  	0,0,0,351,349,1,0,0,0,351,352,1,0,0,0,352,35,1,0,0,0,353,351,1,0,0,0,
-  	354,358,3,38,19,0,355,358,3,40,20,0,356,358,3,48,24,0,357,354,1,0,0,0,
-  	357,355,1,0,0,0,357,356,1,0,0,0,358,37,1,0,0,0,359,360,3,66,33,0,360,
-  	361,5,10,0,0,361,39,1,0,0,0,362,364,3,42,21,0,363,362,1,0,0,0,363,364,
-  	1,0,0,0,364,366,1,0,0,0,365,367,3,44,22,0,366,365,1,0,0,0,366,367,1,0,
-  	0,0,367,369,1,0,0,0,368,370,3,46,23,0,369,368,1,0,0,0,369,370,1,0,0,0,
-  	370,41,1,0,0,0,371,372,3,70,35,0,372,373,5,13,0,0,373,43,1,0,0,0,374,
-  	375,3,70,35,0,375,376,5,18,0,0,376,45,1,0,0,0,377,378,3,70,35,0,378,379,
-  	5,25,0,0,379,47,1,0,0,0,380,381,3,66,33,0,381,382,5,49,0,0,382,383,3,
-  	74,37,0,383,384,5,50,0,0,384,49,1,0,0,0,385,388,3,54,27,0,386,387,5,4,
-  	0,0,387,389,3,56,28,0,388,386,1,0,0,0,388,389,1,0,0,0,389,51,1,0,0,0,
-  	390,395,3,54,27,0,391,392,5,49,0,0,392,393,3,62,31,0,393,394,5,50,0,0,
-  	394,396,1,0,0,0,395,391,1,0,0,0,395,396,1,0,0,0,396,53,1,0,0,0,397,398,
-  	3,60,30,0,398,399,5,39,0,0,399,401,1,0,0,0,400,397,1,0,0,0,400,401,1,
-  	0,0,0,401,402,1,0,0,0,402,403,3,56,28,0,403,55,1,0,0,0,404,405,3,74,37,
-  	0,405,57,1,0,0,0,406,407,6,29,-1,0,407,408,3,54,27,0,408,414,1,0,0,0,
-  	409,410,10,1,0,0,410,411,5,11,0,0,411,413,3,22,11,0,412,409,1,0,0,0,413,
-  	416,1,0,0,0,414,412,1,0,0,0,414,415,1,0,0,0,415,59,1,0,0,0,416,414,1,
-  	0,0,0,417,418,3,74,37,0,418,61,1,0,0,0,419,424,3,64,32,0,420,421,5,45,
-  	0,0,421,423,3,64,32,0,422,420,1,0,0,0,423,426,1,0,0,0,424,422,1,0,0,0,
-  	424,425,1,0,0,0,425,63,1,0,0,0,426,424,1,0,0,0,427,428,3,74,37,0,428,
-  	65,1,0,0,0,429,430,5,58,0,0,430,67,1,0,0,0,431,432,5,57,0,0,432,69,1,
-  	0,0,0,433,436,3,66,33,0,434,436,3,68,34,0,435,433,1,0,0,0,435,434,1,0,
-  	0,0,436,71,1,0,0,0,437,438,5,60,0,0,438,73,1,0,0,0,439,440,5,56,0,0,440,
-  	75,1,0,0,0,441,442,7,4,0,0,442,77,1,0,0,0,43,80,82,92,101,105,110,114,
-  	122,131,134,142,145,158,185,187,198,205,211,225,233,235,261,274,282,284,
-  	289,300,308,310,321,328,344,351,357,363,366,369,388,395,400,414,424,435
+  	6,1,6,1,6,1,6,1,6,1,6,1,6,1,6,1,6,1,6,1,6,1,6,1,6,1,6,1,6,5,6,192,8,6,
+  	10,6,12,6,195,9,6,1,7,1,7,1,7,1,7,1,7,1,7,1,7,1,7,3,7,205,8,7,1,8,1,8,
+  	1,8,5,8,210,8,8,10,8,12,8,213,9,8,1,9,1,9,1,9,3,9,218,8,9,1,10,1,10,1,
+  	11,1,11,1,11,1,11,1,11,1,11,1,11,1,11,1,11,1,11,3,11,232,8,11,1,11,1,
+  	11,1,11,1,11,1,11,1,11,5,11,240,8,11,10,11,12,11,243,9,11,1,12,1,12,1,
+  	12,1,12,1,12,1,12,1,12,1,12,1,12,1,12,1,12,1,12,1,12,1,12,1,12,1,12,1,
+  	12,1,12,1,12,1,12,1,12,1,12,1,12,3,12,268,8,12,1,12,1,12,1,12,1,12,1,
+  	12,1,12,1,12,1,12,1,12,1,12,1,12,3,12,281,8,12,1,12,1,12,1,12,1,12,1,
+  	12,1,12,5,12,289,8,12,10,12,12,12,292,9,12,1,13,1,13,3,13,296,8,13,1,
+  	14,1,14,1,14,1,14,1,14,1,14,1,14,1,14,1,14,3,14,307,8,14,1,14,1,14,1,
+  	14,1,14,1,14,1,14,5,14,315,8,14,10,14,12,14,318,9,14,1,15,1,15,1,15,1,
+  	15,1,15,1,15,1,15,1,15,3,15,328,8,15,1,16,1,16,1,16,5,16,333,8,16,10,
+  	16,12,16,336,9,16,1,16,1,16,1,16,1,16,1,16,1,16,1,16,1,16,1,16,1,16,1,
+  	16,1,16,1,16,3,16,351,8,16,1,17,1,17,1,17,5,17,356,8,17,10,17,12,17,359,
+  	9,17,1,18,1,18,1,18,3,18,364,8,18,1,19,1,19,1,19,1,20,3,20,370,8,20,1,
+  	20,3,20,373,8,20,1,20,3,20,376,8,20,1,21,1,21,1,21,1,22,1,22,1,22,1,23,
+  	1,23,1,23,1,24,1,24,1,24,1,24,1,24,1,25,1,25,1,25,3,25,395,8,25,1,26,
+  	1,26,1,26,1,26,1,26,3,26,402,8,26,1,27,1,27,1,27,3,27,407,8,27,1,27,1,
+  	27,1,28,1,28,1,29,1,29,1,29,1,29,1,29,1,29,5,29,419,8,29,10,29,12,29,
+  	422,9,29,1,30,1,30,1,31,1,31,1,31,5,31,429,8,31,10,31,12,31,432,9,31,
+  	1,32,1,32,1,33,1,33,1,34,1,34,1,35,1,35,3,35,442,8,35,1,36,1,36,1,37,
+  	1,37,1,38,1,38,1,38,0,5,12,22,24,28,58,39,0,2,4,6,8,10,12,14,16,18,20,
+  	22,24,26,28,30,32,34,36,38,40,42,44,46,48,50,52,54,56,58,60,62,64,66,
+  	68,70,72,74,76,0,5,1,0,37,42,1,0,41,42,1,0,33,34,2,0,32,32,35,36,2,0,
+  	1,6,8,31,480,0,82,1,0,0,0,2,87,1,0,0,0,4,90,1,0,0,0,6,122,1,0,0,0,8,134,
+  	1,0,0,0,10,145,1,0,0,0,12,158,1,0,0,0,14,196,1,0,0,0,16,206,1,0,0,0,18,
+  	217,1,0,0,0,20,219,1,0,0,0,22,231,1,0,0,0,24,280,1,0,0,0,26,295,1,0,0,
+  	0,28,306,1,0,0,0,30,327,1,0,0,0,32,350,1,0,0,0,34,352,1,0,0,0,36,363,
+  	1,0,0,0,38,365,1,0,0,0,40,369,1,0,0,0,42,377,1,0,0,0,44,380,1,0,0,0,46,
+  	383,1,0,0,0,48,386,1,0,0,0,50,391,1,0,0,0,52,396,1,0,0,0,54,406,1,0,0,
+  	0,56,410,1,0,0,0,58,412,1,0,0,0,60,423,1,0,0,0,62,425,1,0,0,0,64,433,
+  	1,0,0,0,66,435,1,0,0,0,68,437,1,0,0,0,70,441,1,0,0,0,72,443,1,0,0,0,74,
+  	445,1,0,0,0,76,447,1,0,0,0,78,81,3,4,2,0,79,81,3,2,1,0,80,78,1,0,0,0,
+  	80,79,1,0,0,0,81,84,1,0,0,0,82,80,1,0,0,0,82,83,1,0,0,0,83,85,1,0,0,0,
+  	84,82,1,0,0,0,85,86,5,0,0,1,86,1,1,0,0,0,87,88,5,66,0,0,88,89,6,1,-1,
+  	0,89,3,1,0,0,0,90,92,5,26,0,0,91,93,3,6,3,0,92,91,1,0,0,0,92,93,1,0,0,
+  	0,93,94,1,0,0,0,94,95,3,8,4,0,95,96,3,10,5,0,96,97,5,30,0,0,97,101,3,
+  	12,6,0,98,99,5,23,0,0,99,100,5,5,0,0,100,102,3,14,7,0,101,98,1,0,0,0,
+  	101,102,1,0,0,0,102,105,1,0,0,0,103,104,5,31,0,0,104,106,3,36,18,0,105,
+  	103,1,0,0,0,105,106,1,0,0,0,106,110,1,0,0,0,107,108,5,6,0,0,108,109,5,
+  	5,0,0,109,111,3,18,9,0,110,107,1,0,0,0,110,111,1,0,0,0,111,114,1,0,0,
+  	0,112,113,5,7,0,0,113,115,3,20,10,0,114,112,1,0,0,0,114,115,1,0,0,0,115,
+  	5,1,0,0,0,116,123,5,1,0,0,117,123,5,3,0,0,118,123,5,15,0,0,119,123,5,
+  	17,0,0,120,123,5,19,0,0,121,123,5,28,0,0,122,116,1,0,0,0,122,117,1,0,
+  	0,0,122,118,1,0,0,0,122,119,1,0,0,0,122,120,1,0,0,0,122,121,1,0,0,0,123,
+  	7,1,0,0,0,124,135,5,35,0,0,125,135,5,20,0,0,126,131,3,52,26,0,127,128,
+  	5,45,0,0,128,130,3,52,26,0,129,127,1,0,0,0,130,133,1,0,0,0,131,129,1,
+  	0,0,0,131,132,1,0,0,0,132,135,1,0,0,0,133,131,1,0,0,0,134,124,1,0,0,0,
+  	134,125,1,0,0,0,134,126,1,0,0,0,135,9,1,0,0,0,136,137,5,12,0,0,137,142,
+  	3,60,30,0,138,139,5,45,0,0,139,141,3,60,30,0,140,138,1,0,0,0,141,144,
+  	1,0,0,0,142,140,1,0,0,0,142,143,1,0,0,0,143,146,1,0,0,0,144,142,1,0,0,
+  	0,145,136,1,0,0,0,145,146,1,0,0,0,146,11,1,0,0,0,147,148,6,6,-1,0,148,
+  	149,5,47,0,0,149,150,3,12,6,0,150,151,5,48,0,0,151,159,1,0,0,0,152,159,
+  	3,54,27,0,153,154,5,21,0,0,154,155,5,47,0,0,155,156,3,58,29,0,156,157,
+  	5,48,0,0,157,159,1,0,0,0,158,147,1,0,0,0,158,152,1,0,0,0,158,153,1,0,
+  	0,0,159,193,1,0,0,0,160,161,10,8,0,0,161,162,5,43,0,0,162,192,3,12,6,
+  	9,163,164,10,7,0,0,164,165,5,44,0,0,165,192,3,12,6,8,166,167,10,6,0,0,
+  	167,168,5,22,0,0,168,192,3,12,6,7,169,170,10,4,0,0,170,171,5,54,0,0,171,
+  	192,3,12,6,5,172,173,10,3,0,0,173,174,5,55,0,0,174,192,3,12,6,4,175,176,
+  	10,2,0,0,176,177,5,56,0,0,177,192,3,12,6,3,178,179,10,1,0,0,179,180,5,
+  	57,0,0,180,192,3,12,6,2,181,182,10,11,0,0,182,183,5,4,0,0,183,192,3,56,
+  	28,0,184,185,10,10,0,0,185,192,5,33,0,0,186,187,10,9,0,0,187,192,5,53,
+  	0,0,188,189,10,5,0,0,189,190,5,11,0,0,190,192,3,22,11,0,191,160,1,0,0,
+  	0,191,163,1,0,0,0,191,166,1,0,0,0,191,169,1,0,0,0,191,172,1,0,0,0,191,
+  	175,1,0,0,0,191,178,1,0,0,0,191,181,1,0,0,0,191,184,1,0,0,0,191,186,1,
+  	0,0,0,191,188,1,0,0,0,192,195,1,0,0,0,193,191,1,0,0,0,193,194,1,0,0,0,
+  	194,13,1,0,0,0,195,193,1,0,0,0,196,197,5,49,0,0,197,198,3,16,8,0,198,
+  	204,5,50,0,0,199,200,5,45,0,0,200,201,5,49,0,0,201,202,3,16,8,0,202,203,
+  	5,50,0,0,203,205,1,0,0,0,204,199,1,0,0,0,204,205,1,0,0,0,205,15,1,0,0,
+  	0,206,211,3,64,32,0,207,208,5,45,0,0,208,210,3,64,32,0,209,207,1,0,0,
+  	0,210,213,1,0,0,0,211,209,1,0,0,0,211,212,1,0,0,0,212,17,1,0,0,0,213,
+  	211,1,0,0,0,214,218,5,3,0,0,215,218,5,23,0,0,216,218,5,20,0,0,217,214,
+  	1,0,0,0,217,215,1,0,0,0,217,216,1,0,0,0,218,19,1,0,0,0,219,220,3,66,33,
+  	0,220,21,1,0,0,0,221,222,6,11,-1,0,222,223,5,47,0,0,223,224,3,22,11,0,
+  	224,225,5,48,0,0,225,232,1,0,0,0,226,227,3,54,27,0,227,228,5,49,0,0,228,
+  	229,3,24,12,0,229,230,5,50,0,0,230,232,1,0,0,0,231,221,1,0,0,0,231,226,
+  	1,0,0,0,232,241,1,0,0,0,233,234,10,2,0,0,234,235,5,2,0,0,235,240,3,22,
+  	11,3,236,237,10,1,0,0,237,238,5,22,0,0,238,240,3,22,11,2,239,233,1,0,
+  	0,0,239,236,1,0,0,0,240,243,1,0,0,0,241,239,1,0,0,0,241,242,1,0,0,0,242,
+  	23,1,0,0,0,243,241,1,0,0,0,244,245,6,12,-1,0,245,246,5,47,0,0,246,247,
+  	3,24,12,0,247,248,5,48,0,0,248,281,1,0,0,0,249,250,5,21,0,0,250,281,3,
+  	24,12,8,251,252,3,28,14,0,252,253,7,0,0,0,253,254,3,28,14,0,254,281,1,
+  	0,0,0,255,256,3,26,13,0,256,257,7,1,0,0,257,258,3,26,13,0,258,281,1,0,
+  	0,0,259,260,3,64,32,0,260,261,5,16,0,0,261,262,3,26,13,0,262,281,1,0,
+  	0,0,263,267,3,64,32,0,264,268,5,14,0,0,265,266,5,21,0,0,266,268,5,14,
+  	0,0,267,264,1,0,0,0,267,265,1,0,0,0,268,269,1,0,0,0,269,270,3,30,15,0,
+  	270,281,1,0,0,0,271,272,3,28,14,0,272,273,5,14,0,0,273,274,5,24,0,0,274,
+  	275,5,47,0,0,275,276,3,28,14,0,276,277,5,45,0,0,277,278,3,28,14,0,278,
+  	279,5,48,0,0,279,281,1,0,0,0,280,244,1,0,0,0,280,249,1,0,0,0,280,251,
+  	1,0,0,0,280,255,1,0,0,0,280,259,1,0,0,0,280,263,1,0,0,0,280,271,1,0,0,
+  	0,281,290,1,0,0,0,282,283,10,5,0,0,283,284,5,2,0,0,284,289,3,24,12,6,
+  	285,286,10,4,0,0,286,287,5,22,0,0,287,289,3,24,12,5,288,282,1,0,0,0,288,
+  	285,1,0,0,0,289,292,1,0,0,0,290,288,1,0,0,0,290,291,1,0,0,0,291,25,1,
+  	0,0,0,292,290,1,0,0,0,293,296,3,72,36,0,294,296,3,64,32,0,295,293,1,0,
+  	0,0,295,294,1,0,0,0,296,27,1,0,0,0,297,298,6,14,-1,0,298,299,5,47,0,0,
+  	299,300,3,28,14,0,300,301,5,48,0,0,301,307,1,0,0,0,302,307,3,70,35,0,
+  	303,307,3,64,32,0,304,305,7,2,0,0,305,307,3,28,14,3,306,297,1,0,0,0,306,
+  	302,1,0,0,0,306,303,1,0,0,0,306,304,1,0,0,0,307,316,1,0,0,0,308,309,10,
+  	2,0,0,309,310,7,3,0,0,310,315,3,28,14,3,311,312,10,1,0,0,312,313,7,2,
+  	0,0,313,315,3,28,14,2,314,308,1,0,0,0,314,311,1,0,0,0,315,318,1,0,0,0,
+  	316,314,1,0,0,0,316,317,1,0,0,0,317,29,1,0,0,0,318,316,1,0,0,0,319,320,
+  	5,51,0,0,320,321,3,32,16,0,321,322,5,52,0,0,322,328,1,0,0,0,323,324,5,
+  	51,0,0,324,325,3,34,17,0,325,326,5,52,0,0,326,328,1,0,0,0,327,319,1,0,
+  	0,0,327,323,1,0,0,0,328,31,1,0,0,0,329,334,3,70,35,0,330,331,5,45,0,0,
+  	331,333,3,70,35,0,332,330,1,0,0,0,333,336,1,0,0,0,334,332,1,0,0,0,334,
+  	335,1,0,0,0,335,351,1,0,0,0,336,334,1,0,0,0,337,338,3,66,33,0,338,339,
+  	5,46,0,0,339,340,3,66,33,0,340,351,1,0,0,0,341,342,3,68,34,0,342,343,
+  	5,46,0,0,343,344,3,68,34,0,344,351,1,0,0,0,345,346,3,70,35,0,346,347,
+  	5,46,0,0,347,351,1,0,0,0,348,349,5,46,0,0,349,351,3,70,35,0,350,329,1,
+  	0,0,0,350,337,1,0,0,0,350,341,1,0,0,0,350,345,1,0,0,0,350,348,1,0,0,0,
+  	351,33,1,0,0,0,352,357,3,72,36,0,353,354,5,45,0,0,354,356,3,72,36,0,355,
+  	353,1,0,0,0,356,359,1,0,0,0,357,355,1,0,0,0,357,358,1,0,0,0,358,35,1,
+  	0,0,0,359,357,1,0,0,0,360,364,3,38,19,0,361,364,3,40,20,0,362,364,3,48,
+  	24,0,363,360,1,0,0,0,363,361,1,0,0,0,363,362,1,0,0,0,364,37,1,0,0,0,365,
+  	366,3,66,33,0,366,367,5,10,0,0,367,39,1,0,0,0,368,370,3,42,21,0,369,368,
+  	1,0,0,0,369,370,1,0,0,0,370,372,1,0,0,0,371,373,3,44,22,0,372,371,1,0,
+  	0,0,372,373,1,0,0,0,373,375,1,0,0,0,374,376,3,46,23,0,375,374,1,0,0,0,
+  	375,376,1,0,0,0,376,41,1,0,0,0,377,378,3,70,35,0,378,379,5,13,0,0,379,
+  	43,1,0,0,0,380,381,3,70,35,0,381,382,5,18,0,0,382,45,1,0,0,0,383,384,
+  	3,70,35,0,384,385,5,25,0,0,385,47,1,0,0,0,386,387,3,66,33,0,387,388,5,
+  	49,0,0,388,389,3,74,37,0,389,390,5,50,0,0,390,49,1,0,0,0,391,394,3,54,
+  	27,0,392,393,5,4,0,0,393,395,3,56,28,0,394,392,1,0,0,0,394,395,1,0,0,
+  	0,395,51,1,0,0,0,396,401,3,54,27,0,397,398,5,49,0,0,398,399,3,62,31,0,
+  	399,400,5,50,0,0,400,402,1,0,0,0,401,397,1,0,0,0,401,402,1,0,0,0,402,
+  	53,1,0,0,0,403,404,3,60,30,0,404,405,5,39,0,0,405,407,1,0,0,0,406,403,
+  	1,0,0,0,406,407,1,0,0,0,407,408,1,0,0,0,408,409,3,56,28,0,409,55,1,0,
+  	0,0,410,411,3,74,37,0,411,57,1,0,0,0,412,413,6,29,-1,0,413,414,3,54,27,
+  	0,414,420,1,0,0,0,415,416,10,1,0,0,416,417,5,11,0,0,417,419,3,22,11,0,
+  	418,415,1,0,0,0,419,422,1,0,0,0,420,418,1,0,0,0,420,421,1,0,0,0,421,59,
+  	1,0,0,0,422,420,1,0,0,0,423,424,3,74,37,0,424,61,1,0,0,0,425,430,3,64,
+  	32,0,426,427,5,45,0,0,427,429,3,64,32,0,428,426,1,0,0,0,429,432,1,0,0,
+  	0,430,428,1,0,0,0,430,431,1,0,0,0,431,63,1,0,0,0,432,430,1,0,0,0,433,
+  	434,3,74,37,0,434,65,1,0,0,0,435,436,5,60,0,0,436,67,1,0,0,0,437,438,
+  	5,59,0,0,438,69,1,0,0,0,439,442,3,66,33,0,440,442,3,68,34,0,441,439,1,
+  	0,0,0,441,440,1,0,0,0,442,71,1,0,0,0,443,444,5,62,0,0,444,73,1,0,0,0,
+  	445,446,5,58,0,0,446,75,1,0,0,0,447,448,7,4,0,0,448,77,1,0,0,0,43,80,
+  	82,92,101,105,110,114,122,131,134,142,145,158,191,193,204,211,217,231,
+  	239,241,267,280,288,290,295,306,314,316,327,334,350,357,363,369,372,375,
+  	394,401,406,420,430,441
   };
   staticData->serializedATN = antlr4::atn::SerializedATNView(serializedATNSegment, sizeof(serializedATNSegment) / sizeof(serializedATNSegment[0]));
 
@@ -1033,6 +1036,117 @@ std::any CEQLQueryParser::Contiguous_sequencing_cel_formulaContext::accept(tree:
   else
     return visitor->visitChildren(this);
 }
+//----------------- Filter_cel_formulaContext ------------------------------------------------------------------
+
+CEQLQueryParser::Cel_formulaContext* CEQLQueryParser::Filter_cel_formulaContext::cel_formula() {
+  return getRuleContext<CEQLQueryParser::Cel_formulaContext>(0);
+}
+
+tree::TerminalNode* CEQLQueryParser::Filter_cel_formulaContext::K_FILTER() {
+  return getToken(CEQLQueryParser::K_FILTER, 0);
+}
+
+CEQLQueryParser::FilterContext* CEQLQueryParser::Filter_cel_formulaContext::filter() {
+  return getRuleContext<CEQLQueryParser::FilterContext>(0);
+}
+
+CEQLQueryParser::Filter_cel_formulaContext::Filter_cel_formulaContext(Cel_formulaContext *ctx) { copyFrom(ctx); }
+
+
+std::any CEQLQueryParser::Filter_cel_formulaContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CEQLQueryParserVisitor*>(visitor))
+    return parserVisitor->visitFilter_cel_formula(this);
+  else
+    return visitor->visitChildren(this);
+}
+//----------------- Allen_during_formulaContext ------------------------------------------------------------------
+
+std::vector<CEQLQueryParser::Cel_formulaContext *> CEQLQueryParser::Allen_during_formulaContext::cel_formula() {
+  return getRuleContexts<CEQLQueryParser::Cel_formulaContext>();
+}
+
+CEQLQueryParser::Cel_formulaContext* CEQLQueryParser::Allen_during_formulaContext::cel_formula(size_t i) {
+  return getRuleContext<CEQLQueryParser::Cel_formulaContext>(i);
+}
+
+tree::TerminalNode* CEQLQueryParser::Allen_during_formulaContext::COLON_D() {
+  return getToken(CEQLQueryParser::COLON_D, 0);
+}
+
+CEQLQueryParser::Allen_during_formulaContext::Allen_during_formulaContext(Cel_formulaContext *ctx) { copyFrom(ctx); }
+
+
+std::any CEQLQueryParser::Allen_during_formulaContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CEQLQueryParserVisitor*>(visitor))
+    return parserVisitor->visitAllen_during_formula(this);
+  else
+    return visitor->visitChildren(this);
+}
+//----------------- As_cel_formulaContext ------------------------------------------------------------------
+
+CEQLQueryParser::Cel_formulaContext* CEQLQueryParser::As_cel_formulaContext::cel_formula() {
+  return getRuleContext<CEQLQueryParser::Cel_formulaContext>(0);
+}
+
+tree::TerminalNode* CEQLQueryParser::As_cel_formulaContext::K_AS() {
+  return getToken(CEQLQueryParser::K_AS, 0);
+}
+
+CEQLQueryParser::Event_nameContext* CEQLQueryParser::As_cel_formulaContext::event_name() {
+  return getRuleContext<CEQLQueryParser::Event_nameContext>(0);
+}
+
+CEQLQueryParser::As_cel_formulaContext::As_cel_formulaContext(Cel_formulaContext *ctx) { copyFrom(ctx); }
+
+
+std::any CEQLQueryParser::As_cel_formulaContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CEQLQueryParserVisitor*>(visitor))
+    return parserVisitor->visitAs_cel_formula(this);
+  else
+    return visitor->visitChildren(this);
+}
+//----------------- Non_contiguous_sequencing_cel_formulaContext ------------------------------------------------------------------
+
+std::vector<CEQLQueryParser::Cel_formulaContext *> CEQLQueryParser::Non_contiguous_sequencing_cel_formulaContext::cel_formula() {
+  return getRuleContexts<CEQLQueryParser::Cel_formulaContext>();
+}
+
+CEQLQueryParser::Cel_formulaContext* CEQLQueryParser::Non_contiguous_sequencing_cel_formulaContext::cel_formula(size_t i) {
+  return getRuleContext<CEQLQueryParser::Cel_formulaContext>(i);
+}
+
+tree::TerminalNode* CEQLQueryParser::Non_contiguous_sequencing_cel_formulaContext::SEMICOLON() {
+  return getToken(CEQLQueryParser::SEMICOLON, 0);
+}
+
+CEQLQueryParser::Non_contiguous_sequencing_cel_formulaContext::Non_contiguous_sequencing_cel_formulaContext(Cel_formulaContext *ctx) { copyFrom(ctx); }
+
+
+std::any CEQLQueryParser::Non_contiguous_sequencing_cel_formulaContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CEQLQueryParserVisitor*>(visitor))
+    return parserVisitor->visitNon_contiguous_sequencing_cel_formula(this);
+  else
+    return visitor->visitChildren(this);
+}
+//----------------- Non_contiguous_iteration_cel_formulaContext ------------------------------------------------------------------
+
+CEQLQueryParser::Cel_formulaContext* CEQLQueryParser::Non_contiguous_iteration_cel_formulaContext::cel_formula() {
+  return getRuleContext<CEQLQueryParser::Cel_formulaContext>(0);
+}
+
+tree::TerminalNode* CEQLQueryParser::Non_contiguous_iteration_cel_formulaContext::PLUS() {
+  return getToken(CEQLQueryParser::PLUS, 0);
+}
+
+CEQLQueryParser::Non_contiguous_iteration_cel_formulaContext::Non_contiguous_iteration_cel_formulaContext(Cel_formulaContext *ctx) { copyFrom(ctx); }
+
+
+std::any CEQLQueryParser::Non_contiguous_iteration_cel_formulaContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CEQLQueryParserVisitor*>(visitor))
+    return parserVisitor->visitNon_contiguous_iteration_cel_formula(this);
+  else
+    return visitor->visitChildren(this);
+}
 //----------------- Not_event_type_atomic_cel_formulaContext ------------------------------------------------------------------
 
 tree::TerminalNode* CEQLQueryParser::Not_event_type_atomic_cel_formulaContext::K_NOT() {
@@ -1091,6 +1205,29 @@ CEQLQueryParser::Contiguous_iteration_cel_formulaContext::Contiguous_iteration_c
 std::any CEQLQueryParser::Contiguous_iteration_cel_formulaContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<CEQLQueryParserVisitor*>(visitor))
     return parserVisitor->visitContiguous_iteration_cel_formula(this);
+  else
+    return visitor->visitChildren(this);
+}
+//----------------- Allen_finishes_formulaContext ------------------------------------------------------------------
+
+std::vector<CEQLQueryParser::Cel_formulaContext *> CEQLQueryParser::Allen_finishes_formulaContext::cel_formula() {
+  return getRuleContexts<CEQLQueryParser::Cel_formulaContext>();
+}
+
+CEQLQueryParser::Cel_formulaContext* CEQLQueryParser::Allen_finishes_formulaContext::cel_formula(size_t i) {
+  return getRuleContext<CEQLQueryParser::Cel_formulaContext>(i);
+}
+
+tree::TerminalNode* CEQLQueryParser::Allen_finishes_formulaContext::COLON_F() {
+  return getToken(CEQLQueryParser::COLON_F, 0);
+}
+
+CEQLQueryParser::Allen_finishes_formulaContext::Allen_finishes_formulaContext(Cel_formulaContext *ctx) { copyFrom(ctx); }
+
+
+std::any CEQLQueryParser::Allen_finishes_formulaContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CEQLQueryParserVisitor*>(visitor))
+    return parserVisitor->visitAllen_finishes_formula(this);
   else
     return visitor->visitChildren(this);
 }
@@ -1163,29 +1300,6 @@ std::any CEQLQueryParser::Allen_overlap_formulaContext::accept(tree::ParseTreeVi
   else
     return visitor->visitChildren(this);
 }
-//----------------- Filter_cel_formulaContext ------------------------------------------------------------------
-
-CEQLQueryParser::Cel_formulaContext* CEQLQueryParser::Filter_cel_formulaContext::cel_formula() {
-  return getRuleContext<CEQLQueryParser::Cel_formulaContext>(0);
-}
-
-tree::TerminalNode* CEQLQueryParser::Filter_cel_formulaContext::K_FILTER() {
-  return getToken(CEQLQueryParser::K_FILTER, 0);
-}
-
-CEQLQueryParser::FilterContext* CEQLQueryParser::Filter_cel_formulaContext::filter() {
-  return getRuleContext<CEQLQueryParser::FilterContext>(0);
-}
-
-CEQLQueryParser::Filter_cel_formulaContext::Filter_cel_formulaContext(Cel_formulaContext *ctx) { copyFrom(ctx); }
-
-
-std::any CEQLQueryParser::Filter_cel_formulaContext::accept(tree::ParseTreeVisitor *visitor) {
-  if (auto parserVisitor = dynamic_cast<CEQLQueryParserVisitor*>(visitor))
-    return parserVisitor->visitFilter_cel_formula(this);
-  else
-    return visitor->visitChildren(this);
-}
 //----------------- Or_cel_formulaContext ------------------------------------------------------------------
 
 std::vector<CEQLQueryParser::Cel_formulaContext *> CEQLQueryParser::Or_cel_formulaContext::cel_formula() {
@@ -1206,71 +1320,6 @@ CEQLQueryParser::Or_cel_formulaContext::Or_cel_formulaContext(Cel_formulaContext
 std::any CEQLQueryParser::Or_cel_formulaContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<CEQLQueryParserVisitor*>(visitor))
     return parserVisitor->visitOr_cel_formula(this);
-  else
-    return visitor->visitChildren(this);
-}
-//----------------- As_cel_formulaContext ------------------------------------------------------------------
-
-CEQLQueryParser::Cel_formulaContext* CEQLQueryParser::As_cel_formulaContext::cel_formula() {
-  return getRuleContext<CEQLQueryParser::Cel_formulaContext>(0);
-}
-
-tree::TerminalNode* CEQLQueryParser::As_cel_formulaContext::K_AS() {
-  return getToken(CEQLQueryParser::K_AS, 0);
-}
-
-CEQLQueryParser::Event_nameContext* CEQLQueryParser::As_cel_formulaContext::event_name() {
-  return getRuleContext<CEQLQueryParser::Event_nameContext>(0);
-}
-
-CEQLQueryParser::As_cel_formulaContext::As_cel_formulaContext(Cel_formulaContext *ctx) { copyFrom(ctx); }
-
-
-std::any CEQLQueryParser::As_cel_formulaContext::accept(tree::ParseTreeVisitor *visitor) {
-  if (auto parserVisitor = dynamic_cast<CEQLQueryParserVisitor*>(visitor))
-    return parserVisitor->visitAs_cel_formula(this);
-  else
-    return visitor->visitChildren(this);
-}
-//----------------- Non_contiguous_sequencing_cel_formulaContext ------------------------------------------------------------------
-
-std::vector<CEQLQueryParser::Cel_formulaContext *> CEQLQueryParser::Non_contiguous_sequencing_cel_formulaContext::cel_formula() {
-  return getRuleContexts<CEQLQueryParser::Cel_formulaContext>();
-}
-
-CEQLQueryParser::Cel_formulaContext* CEQLQueryParser::Non_contiguous_sequencing_cel_formulaContext::cel_formula(size_t i) {
-  return getRuleContext<CEQLQueryParser::Cel_formulaContext>(i);
-}
-
-tree::TerminalNode* CEQLQueryParser::Non_contiguous_sequencing_cel_formulaContext::SEMICOLON() {
-  return getToken(CEQLQueryParser::SEMICOLON, 0);
-}
-
-CEQLQueryParser::Non_contiguous_sequencing_cel_formulaContext::Non_contiguous_sequencing_cel_formulaContext(Cel_formulaContext *ctx) { copyFrom(ctx); }
-
-
-std::any CEQLQueryParser::Non_contiguous_sequencing_cel_formulaContext::accept(tree::ParseTreeVisitor *visitor) {
-  if (auto parserVisitor = dynamic_cast<CEQLQueryParserVisitor*>(visitor))
-    return parserVisitor->visitNon_contiguous_sequencing_cel_formula(this);
-  else
-    return visitor->visitChildren(this);
-}
-//----------------- Non_contiguous_iteration_cel_formulaContext ------------------------------------------------------------------
-
-CEQLQueryParser::Cel_formulaContext* CEQLQueryParser::Non_contiguous_iteration_cel_formulaContext::cel_formula() {
-  return getRuleContext<CEQLQueryParser::Cel_formulaContext>(0);
-}
-
-tree::TerminalNode* CEQLQueryParser::Non_contiguous_iteration_cel_formulaContext::PLUS() {
-  return getToken(CEQLQueryParser::PLUS, 0);
-}
-
-CEQLQueryParser::Non_contiguous_iteration_cel_formulaContext::Non_contiguous_iteration_cel_formulaContext(Cel_formulaContext *ctx) { copyFrom(ctx); }
-
-
-std::any CEQLQueryParser::Non_contiguous_iteration_cel_formulaContext::accept(tree::ParseTreeVisitor *visitor) {
-  if (auto parserVisitor = dynamic_cast<CEQLQueryParserVisitor*>(visitor))
-    return parserVisitor->visitNon_contiguous_iteration_cel_formula(this);
   else
     return visitor->visitChildren(this);
 }
@@ -1345,7 +1394,7 @@ CEQLQueryParser::Cel_formulaContext* CEQLQueryParser::cel_formula(int precedence
       throw NoViableAltException(this);
     }
     _ctx->stop = _input->LT(-1);
-    setState(187);
+    setState(193);
     _errHandler->sync(this);
     alt = getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 14, _ctx);
     while (alt != 2 && alt != atn::ATN::INVALID_ALT_NUMBER) {
@@ -1353,7 +1402,7 @@ CEQLQueryParser::Cel_formulaContext* CEQLQueryParser::cel_formula(int precedence
         if (!_parseListeners.empty())
           triggerExitRuleEvent();
         previousContext = _localctx;
-        setState(185);
+        setState(191);
         _errHandler->sync(this);
         switch (getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 13, _ctx)) {
         case 1: {
@@ -1362,11 +1411,11 @@ CEQLQueryParser::Cel_formulaContext* CEQLQueryParser::cel_formula(int precedence
           pushNewRecursionContext(newContext, startState, RuleCel_formula);
           setState(160);
 
-          if (!(precpred(_ctx, 6))) throw FailedPredicateException(this, "precpred(_ctx, 6)");
+          if (!(precpred(_ctx, 8))) throw FailedPredicateException(this, "precpred(_ctx, 8)");
           setState(161);
           match(CEQLQueryParser::SEMICOLON);
           setState(162);
-          cel_formula(7);
+          cel_formula(9);
           break;
         }
 
@@ -1376,11 +1425,11 @@ CEQLQueryParser::Cel_formulaContext* CEQLQueryParser::cel_formula(int precedence
           pushNewRecursionContext(newContext, startState, RuleCel_formula);
           setState(163);
 
-          if (!(precpred(_ctx, 5))) throw FailedPredicateException(this, "precpred(_ctx, 5)");
+          if (!(precpred(_ctx, 7))) throw FailedPredicateException(this, "precpred(_ctx, 7)");
           setState(164);
           match(CEQLQueryParser::COLON);
           setState(165);
-          cel_formula(6);
+          cel_formula(8);
           break;
         }
 
@@ -1390,11 +1439,11 @@ CEQLQueryParser::Cel_formulaContext* CEQLQueryParser::cel_formula(int precedence
           pushNewRecursionContext(newContext, startState, RuleCel_formula);
           setState(166);
 
-          if (!(precpred(_ctx, 4))) throw FailedPredicateException(this, "precpred(_ctx, 4)");
+          if (!(precpred(_ctx, 6))) throw FailedPredicateException(this, "precpred(_ctx, 6)");
           setState(167);
           match(CEQLQueryParser::K_OR);
           setState(168);
-          cel_formula(5);
+          cel_formula(7);
           break;
         }
 
@@ -1404,11 +1453,11 @@ CEQLQueryParser::Cel_formulaContext* CEQLQueryParser::cel_formula(int precedence
           pushNewRecursionContext(newContext, startState, RuleCel_formula);
           setState(169);
 
-          if (!(precpred(_ctx, 2))) throw FailedPredicateException(this, "precpred(_ctx, 2)");
+          if (!(precpred(_ctx, 4))) throw FailedPredicateException(this, "precpred(_ctx, 4)");
           setState(170);
           match(CEQLQueryParser::COLON_O);
           setState(171);
-          cel_formula(3);
+          cel_formula(5);
           break;
         }
 
@@ -1418,62 +1467,90 @@ CEQLQueryParser::Cel_formulaContext* CEQLQueryParser::cel_formula(int precedence
           pushNewRecursionContext(newContext, startState, RuleCel_formula);
           setState(172);
 
-          if (!(precpred(_ctx, 1))) throw FailedPredicateException(this, "precpred(_ctx, 1)");
+          if (!(precpred(_ctx, 3))) throw FailedPredicateException(this, "precpred(_ctx, 3)");
           setState(173);
           match(CEQLQueryParser::COLON_S);
           setState(174);
-          cel_formula(2);
+          cel_formula(4);
           break;
         }
 
         case 6: {
-          auto newContext = _tracker.createInstance<As_cel_formulaContext>(_tracker.createInstance<Cel_formulaContext>(parentContext, parentState));
+          auto newContext = _tracker.createInstance<Allen_during_formulaContext>(_tracker.createInstance<Cel_formulaContext>(parentContext, parentState));
           _localctx = newContext;
           pushNewRecursionContext(newContext, startState, RuleCel_formula);
           setState(175);
 
-          if (!(precpred(_ctx, 9))) throw FailedPredicateException(this, "precpred(_ctx, 9)");
+          if (!(precpred(_ctx, 2))) throw FailedPredicateException(this, "precpred(_ctx, 2)");
           setState(176);
-          match(CEQLQueryParser::K_AS);
+          match(CEQLQueryParser::COLON_D);
           setState(177);
-          event_name();
+          cel_formula(3);
           break;
         }
 
         case 7: {
-          auto newContext = _tracker.createInstance<Non_contiguous_iteration_cel_formulaContext>(_tracker.createInstance<Cel_formulaContext>(parentContext, parentState));
+          auto newContext = _tracker.createInstance<Allen_finishes_formulaContext>(_tracker.createInstance<Cel_formulaContext>(parentContext, parentState));
           _localctx = newContext;
           pushNewRecursionContext(newContext, startState, RuleCel_formula);
           setState(178);
 
-          if (!(precpred(_ctx, 8))) throw FailedPredicateException(this, "precpred(_ctx, 8)");
+          if (!(precpred(_ctx, 1))) throw FailedPredicateException(this, "precpred(_ctx, 1)");
           setState(179);
-          match(CEQLQueryParser::PLUS);
+          match(CEQLQueryParser::COLON_F);
+          setState(180);
+          cel_formula(2);
           break;
         }
 
         case 8: {
-          auto newContext = _tracker.createInstance<Contiguous_iteration_cel_formulaContext>(_tracker.createInstance<Cel_formulaContext>(parentContext, parentState));
+          auto newContext = _tracker.createInstance<As_cel_formulaContext>(_tracker.createInstance<Cel_formulaContext>(parentContext, parentState));
           _localctx = newContext;
           pushNewRecursionContext(newContext, startState, RuleCel_formula);
-          setState(180);
-
-          if (!(precpred(_ctx, 7))) throw FailedPredicateException(this, "precpred(_ctx, 7)");
           setState(181);
-          match(CEQLQueryParser::COLON_PLUS);
+
+          if (!(precpred(_ctx, 11))) throw FailedPredicateException(this, "precpred(_ctx, 11)");
+          setState(182);
+          match(CEQLQueryParser::K_AS);
+          setState(183);
+          event_name();
           break;
         }
 
         case 9: {
+          auto newContext = _tracker.createInstance<Non_contiguous_iteration_cel_formulaContext>(_tracker.createInstance<Cel_formulaContext>(parentContext, parentState));
+          _localctx = newContext;
+          pushNewRecursionContext(newContext, startState, RuleCel_formula);
+          setState(184);
+
+          if (!(precpred(_ctx, 10))) throw FailedPredicateException(this, "precpred(_ctx, 10)");
+          setState(185);
+          match(CEQLQueryParser::PLUS);
+          break;
+        }
+
+        case 10: {
+          auto newContext = _tracker.createInstance<Contiguous_iteration_cel_formulaContext>(_tracker.createInstance<Cel_formulaContext>(parentContext, parentState));
+          _localctx = newContext;
+          pushNewRecursionContext(newContext, startState, RuleCel_formula);
+          setState(186);
+
+          if (!(precpred(_ctx, 9))) throw FailedPredicateException(this, "precpred(_ctx, 9)");
+          setState(187);
+          match(CEQLQueryParser::COLON_PLUS);
+          break;
+        }
+
+        case 11: {
           auto newContext = _tracker.createInstance<Filter_cel_formulaContext>(_tracker.createInstance<Cel_formulaContext>(parentContext, parentState));
           _localctx = newContext;
           pushNewRecursionContext(newContext, startState, RuleCel_formula);
-          setState(182);
+          setState(188);
 
-          if (!(precpred(_ctx, 3))) throw FailedPredicateException(this, "precpred(_ctx, 3)");
-          setState(183);
+          if (!(precpred(_ctx, 5))) throw FailedPredicateException(this, "precpred(_ctx, 5)");
+          setState(189);
           match(CEQLQueryParser::K_FILTER);
-          setState(184);
+          setState(190);
           filter(0);
           break;
         }
@@ -1482,7 +1559,7 @@ CEQLQueryParser::Cel_formulaContext* CEQLQueryParser::cel_formula(int precedence
           break;
         } 
       }
-      setState(189);
+      setState(195);
       _errHandler->sync(this);
       alt = getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 14, _ctx);
     }
@@ -1556,24 +1633,24 @@ CEQLQueryParser::Partition_listContext* CEQLQueryParser::partition_list() {
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(190);
+    setState(196);
     match(CEQLQueryParser::LEFT_SQUARE_BRACKET);
-    setState(191);
+    setState(197);
     attribute_list();
-    setState(192);
-    match(CEQLQueryParser::RIGHT_SQUARE_BRACKET);
     setState(198);
+    match(CEQLQueryParser::RIGHT_SQUARE_BRACKET);
+    setState(204);
     _errHandler->sync(this);
 
     _la = _input->LA(1);
     if (_la == CEQLQueryParser::COMMA) {
-      setState(193);
+      setState(199);
       match(CEQLQueryParser::COMMA);
-      setState(194);
+      setState(200);
       match(CEQLQueryParser::LEFT_SQUARE_BRACKET);
-      setState(195);
+      setState(201);
       attribute_list();
-      setState(196);
+      setState(202);
       match(CEQLQueryParser::RIGHT_SQUARE_BRACKET);
     }
    
@@ -1636,17 +1713,17 @@ CEQLQueryParser::Attribute_listContext* CEQLQueryParser::attribute_list() {
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(200);
+    setState(206);
     attribute_name();
-    setState(205);
+    setState(211);
     _errHandler->sync(this);
     _la = _input->LA(1);
     while (_la == CEQLQueryParser::COMMA) {
-      setState(201);
-      match(CEQLQueryParser::COMMA);
-      setState(202);
-      attribute_name();
       setState(207);
+      match(CEQLQueryParser::COMMA);
+      setState(208);
+      attribute_name();
+      setState(213);
       _errHandler->sync(this);
       _la = _input->LA(1);
     }
@@ -1733,13 +1810,13 @@ CEQLQueryParser::Consumption_policyContext* CEQLQueryParser::consumption_policy(
     exitRule();
   });
   try {
-    setState(211);
+    setState(217);
     _errHandler->sync(this);
     switch (_input->LA(1)) {
       case CEQLQueryParser::K_ANY: {
         _localctx = _tracker.createInstance<CEQLQueryParser::Cp_anyContext>(_localctx);
         enterOuterAlt(_localctx, 1);
-        setState(208);
+        setState(214);
         match(CEQLQueryParser::K_ANY);
         break;
       }
@@ -1747,7 +1824,7 @@ CEQLQueryParser::Consumption_policyContext* CEQLQueryParser::consumption_policy(
       case CEQLQueryParser::K_PARTITION: {
         _localctx = _tracker.createInstance<CEQLQueryParser::Cp_partitionContext>(_localctx);
         enterOuterAlt(_localctx, 2);
-        setState(209);
+        setState(215);
         match(CEQLQueryParser::K_PARTITION);
         break;
       }
@@ -1755,7 +1832,7 @@ CEQLQueryParser::Consumption_policyContext* CEQLQueryParser::consumption_policy(
       case CEQLQueryParser::K_NONE: {
         _localctx = _tracker.createInstance<CEQLQueryParser::Cp_noneContext>(_localctx);
         enterOuterAlt(_localctx, 3);
-        setState(210);
+        setState(216);
         match(CEQLQueryParser::K_NONE);
         break;
       }
@@ -1818,7 +1895,7 @@ CEQLQueryParser::LimitContext* CEQLQueryParser::limit() {
   try {
     _localctx = _tracker.createInstance<CEQLQueryParser::L_integerContext>(_localctx);
     enterOuterAlt(_localctx, 1);
-    setState(213);
+    setState(219);
     integer();
    
   }
@@ -1968,7 +2045,7 @@ CEQLQueryParser::FilterContext* CEQLQueryParser::filter(int precedence) {
   try {
     size_t alt;
     enterOuterAlt(_localctx, 1);
-    setState(225);
+    setState(231);
     _errHandler->sync(this);
     switch (_input->LA(1)) {
       case CEQLQueryParser::LEFT_PARENTHESIS: {
@@ -1976,11 +2053,11 @@ CEQLQueryParser::FilterContext* CEQLQueryParser::filter(int precedence) {
         _ctx = _localctx;
         previousContext = _localctx;
 
-        setState(216);
+        setState(222);
         match(CEQLQueryParser::LEFT_PARENTHESIS);
-        setState(217);
+        setState(223);
         filter(0);
-        setState(218);
+        setState(224);
         match(CEQLQueryParser::RIGHT_PARENTHESIS);
         break;
       }
@@ -1989,13 +2066,13 @@ CEQLQueryParser::FilterContext* CEQLQueryParser::filter(int precedence) {
         _localctx = _tracker.createInstance<Atomic_filterContext>(_localctx);
         _ctx = _localctx;
         previousContext = _localctx;
-        setState(220);
+        setState(226);
         s_event_name();
-        setState(221);
+        setState(227);
         match(CEQLQueryParser::LEFT_SQUARE_BRACKET);
-        setState(222);
+        setState(228);
         predicate(0);
-        setState(223);
+        setState(229);
         match(CEQLQueryParser::RIGHT_SQUARE_BRACKET);
         break;
       }
@@ -2004,7 +2081,7 @@ CEQLQueryParser::FilterContext* CEQLQueryParser::filter(int precedence) {
       throw NoViableAltException(this);
     }
     _ctx->stop = _input->LT(-1);
-    setState(235);
+    setState(241);
     _errHandler->sync(this);
     alt = getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 20, _ctx);
     while (alt != 2 && alt != atn::ATN::INVALID_ALT_NUMBER) {
@@ -2012,19 +2089,19 @@ CEQLQueryParser::FilterContext* CEQLQueryParser::filter(int precedence) {
         if (!_parseListeners.empty())
           triggerExitRuleEvent();
         previousContext = _localctx;
-        setState(233);
+        setState(239);
         _errHandler->sync(this);
         switch (getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 19, _ctx)) {
         case 1: {
           auto newContext = _tracker.createInstance<And_filterContext>(_tracker.createInstance<FilterContext>(parentContext, parentState));
           _localctx = newContext;
           pushNewRecursionContext(newContext, startState, RuleFilter);
-          setState(227);
+          setState(233);
 
           if (!(precpred(_ctx, 2))) throw FailedPredicateException(this, "precpred(_ctx, 2)");
-          setState(228);
+          setState(234);
           match(CEQLQueryParser::K_AND);
-          setState(229);
+          setState(235);
           filter(3);
           break;
         }
@@ -2033,12 +2110,12 @@ CEQLQueryParser::FilterContext* CEQLQueryParser::filter(int precedence) {
           auto newContext = _tracker.createInstance<Or_filterContext>(_tracker.createInstance<FilterContext>(parentContext, parentState));
           _localctx = newContext;
           pushNewRecursionContext(newContext, startState, RuleFilter);
-          setState(230);
+          setState(236);
 
           if (!(precpred(_ctx, 1))) throw FailedPredicateException(this, "precpred(_ctx, 1)");
-          setState(231);
+          setState(237);
           match(CEQLQueryParser::K_OR);
-          setState(232);
+          setState(238);
           filter(2);
           break;
         }
@@ -2047,7 +2124,7 @@ CEQLQueryParser::FilterContext* CEQLQueryParser::filter(int precedence) {
           break;
         } 
       }
-      setState(237);
+      setState(243);
       _errHandler->sync(this);
       alt = getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 20, _ctx);
     }
@@ -2348,7 +2425,7 @@ CEQLQueryParser::PredicateContext* CEQLQueryParser::predicate(int precedence) {
   try {
     size_t alt;
     enterOuterAlt(_localctx, 1);
-    setState(274);
+    setState(280);
     _errHandler->sync(this);
     switch (getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 22, _ctx)) {
     case 1: {
@@ -2356,11 +2433,11 @@ CEQLQueryParser::PredicateContext* CEQLQueryParser::predicate(int precedence) {
       _ctx = _localctx;
       previousContext = _localctx;
 
-      setState(239);
+      setState(245);
       match(CEQLQueryParser::LEFT_PARENTHESIS);
-      setState(240);
+      setState(246);
       predicate(0);
-      setState(241);
+      setState(247);
       match(CEQLQueryParser::RIGHT_PARENTHESIS);
       break;
     }
@@ -2369,9 +2446,9 @@ CEQLQueryParser::PredicateContext* CEQLQueryParser::predicate(int precedence) {
       _localctx = _tracker.createInstance<Not_predicateContext>(_localctx);
       _ctx = _localctx;
       previousContext = _localctx;
-      setState(243);
+      setState(249);
       match(CEQLQueryParser::K_NOT);
-      setState(244);
+      setState(250);
       predicate(8);
       break;
     }
@@ -2380,9 +2457,9 @@ CEQLQueryParser::PredicateContext* CEQLQueryParser::predicate(int precedence) {
       _localctx = _tracker.createInstance<Inequality_predicateContext>(_localctx);
       _ctx = _localctx;
       previousContext = _localctx;
-      setState(245);
+      setState(251);
       math_expr(0);
-      setState(246);
+      setState(252);
       _la = _input->LA(1);
       if (!((((_la & ~ 0x3fULL) == 0) &&
         ((1ULL << _la) & 8658654068736) != 0))) {
@@ -2392,7 +2469,7 @@ CEQLQueryParser::PredicateContext* CEQLQueryParser::predicate(int precedence) {
         _errHandler->reportMatch(this);
         consume();
       }
-      setState(247);
+      setState(253);
       math_expr(0);
       break;
     }
@@ -2401,9 +2478,9 @@ CEQLQueryParser::PredicateContext* CEQLQueryParser::predicate(int precedence) {
       _localctx = _tracker.createInstance<Equality_string_predicateContext>(_localctx);
       _ctx = _localctx;
       previousContext = _localctx;
-      setState(249);
+      setState(255);
       string_literal();
-      setState(250);
+      setState(256);
       _la = _input->LA(1);
       if (!(_la == CEQLQueryParser::EQ
 
@@ -2414,7 +2491,7 @@ CEQLQueryParser::PredicateContext* CEQLQueryParser::predicate(int precedence) {
         _errHandler->reportMatch(this);
         consume();
       }
-      setState(251);
+      setState(257);
       string_literal();
       break;
     }
@@ -2423,11 +2500,11 @@ CEQLQueryParser::PredicateContext* CEQLQueryParser::predicate(int precedence) {
       _localctx = _tracker.createInstance<Regex_predicateContext>(_localctx);
       _ctx = _localctx;
       previousContext = _localctx;
-      setState(253);
+      setState(259);
       attribute_name();
-      setState(254);
+      setState(260);
       match(CEQLQueryParser::K_LIKE);
-      setState(255);
+      setState(261);
       string_literal();
       break;
     }
@@ -2436,21 +2513,21 @@ CEQLQueryParser::PredicateContext* CEQLQueryParser::predicate(int precedence) {
       _localctx = _tracker.createInstance<In_predicateContext>(_localctx);
       _ctx = _localctx;
       previousContext = _localctx;
-      setState(257);
+      setState(263);
       attribute_name();
-      setState(261);
+      setState(267);
       _errHandler->sync(this);
       switch (_input->LA(1)) {
         case CEQLQueryParser::K_IN: {
-          setState(258);
+          setState(264);
           match(CEQLQueryParser::K_IN);
           break;
         }
 
         case CEQLQueryParser::K_NOT: {
-          setState(259);
+          setState(265);
           match(CEQLQueryParser::K_NOT);
-          setState(260);
+          setState(266);
           match(CEQLQueryParser::K_IN);
           break;
         }
@@ -2458,7 +2535,7 @@ CEQLQueryParser::PredicateContext* CEQLQueryParser::predicate(int precedence) {
       default:
         throw NoViableAltException(this);
       }
-      setState(263);
+      setState(269);
       value_seq();
       break;
     }
@@ -2467,21 +2544,21 @@ CEQLQueryParser::PredicateContext* CEQLQueryParser::predicate(int precedence) {
       _localctx = _tracker.createInstance<In_range_predicateContext>(_localctx);
       _ctx = _localctx;
       previousContext = _localctx;
-      setState(265);
-      math_expr(0);
-      setState(266);
-      match(CEQLQueryParser::K_IN);
-      setState(267);
-      match(CEQLQueryParser::K_RANGE);
-      setState(268);
-      match(CEQLQueryParser::LEFT_PARENTHESIS);
-      setState(269);
-      math_expr(0);
-      setState(270);
-      match(CEQLQueryParser::COMMA);
       setState(271);
       math_expr(0);
       setState(272);
+      match(CEQLQueryParser::K_IN);
+      setState(273);
+      match(CEQLQueryParser::K_RANGE);
+      setState(274);
+      match(CEQLQueryParser::LEFT_PARENTHESIS);
+      setState(275);
+      math_expr(0);
+      setState(276);
+      match(CEQLQueryParser::COMMA);
+      setState(277);
+      math_expr(0);
+      setState(278);
       match(CEQLQueryParser::RIGHT_PARENTHESIS);
       break;
     }
@@ -2490,7 +2567,7 @@ CEQLQueryParser::PredicateContext* CEQLQueryParser::predicate(int precedence) {
       break;
     }
     _ctx->stop = _input->LT(-1);
-    setState(284);
+    setState(290);
     _errHandler->sync(this);
     alt = getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 24, _ctx);
     while (alt != 2 && alt != atn::ATN::INVALID_ALT_NUMBER) {
@@ -2498,19 +2575,19 @@ CEQLQueryParser::PredicateContext* CEQLQueryParser::predicate(int precedence) {
         if (!_parseListeners.empty())
           triggerExitRuleEvent();
         previousContext = _localctx;
-        setState(282);
+        setState(288);
         _errHandler->sync(this);
         switch (getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 23, _ctx)) {
         case 1: {
           auto newContext = _tracker.createInstance<And_predicateContext>(_tracker.createInstance<PredicateContext>(parentContext, parentState));
           _localctx = newContext;
           pushNewRecursionContext(newContext, startState, RulePredicate);
-          setState(276);
+          setState(282);
 
           if (!(precpred(_ctx, 5))) throw FailedPredicateException(this, "precpred(_ctx, 5)");
-          setState(277);
+          setState(283);
           match(CEQLQueryParser::K_AND);
-          setState(278);
+          setState(284);
           predicate(6);
           break;
         }
@@ -2519,12 +2596,12 @@ CEQLQueryParser::PredicateContext* CEQLQueryParser::predicate(int precedence) {
           auto newContext = _tracker.createInstance<Or_predicateContext>(_tracker.createInstance<PredicateContext>(parentContext, parentState));
           _localctx = newContext;
           pushNewRecursionContext(newContext, startState, RulePredicate);
-          setState(279);
+          setState(285);
 
           if (!(precpred(_ctx, 4))) throw FailedPredicateException(this, "precpred(_ctx, 4)");
-          setState(280);
+          setState(286);
           match(CEQLQueryParser::K_OR);
-          setState(281);
+          setState(287);
           predicate(5);
           break;
         }
@@ -2533,7 +2610,7 @@ CEQLQueryParser::PredicateContext* CEQLQueryParser::predicate(int precedence) {
           break;
         } 
       }
-      setState(286);
+      setState(292);
       _errHandler->sync(this);
       alt = getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 24, _ctx);
     }
@@ -2585,19 +2662,19 @@ CEQLQueryParser::String_literalContext* CEQLQueryParser::string_literal() {
     exitRule();
   });
   try {
-    setState(289);
+    setState(295);
     _errHandler->sync(this);
     switch (_input->LA(1)) {
       case CEQLQueryParser::STRING_LITERAL: {
         enterOuterAlt(_localctx, 1);
-        setState(287);
+        setState(293);
         string();
         break;
       }
 
       case CEQLQueryParser::IDENTIFIER: {
         enterOuterAlt(_localctx, 2);
-        setState(288);
+        setState(294);
         attribute_name();
         break;
       }
@@ -2791,7 +2868,7 @@ CEQLQueryParser::Math_exprContext* CEQLQueryParser::math_expr(int precedence) {
   try {
     size_t alt;
     enterOuterAlt(_localctx, 1);
-    setState(300);
+    setState(306);
     _errHandler->sync(this);
     switch (_input->LA(1)) {
       case CEQLQueryParser::LEFT_PARENTHESIS: {
@@ -2799,11 +2876,11 @@ CEQLQueryParser::Math_exprContext* CEQLQueryParser::math_expr(int precedence) {
         _ctx = _localctx;
         previousContext = _localctx;
 
-        setState(292);
+        setState(298);
         match(CEQLQueryParser::LEFT_PARENTHESIS);
-        setState(293);
+        setState(299);
         math_expr(0);
-        setState(294);
+        setState(300);
         match(CEQLQueryParser::RIGHT_PARENTHESIS);
         break;
       }
@@ -2813,7 +2890,7 @@ CEQLQueryParser::Math_exprContext* CEQLQueryParser::math_expr(int precedence) {
         _localctx = _tracker.createInstance<Number_math_exprContext>(_localctx);
         _ctx = _localctx;
         previousContext = _localctx;
-        setState(296);
+        setState(302);
         number();
         break;
       }
@@ -2822,7 +2899,7 @@ CEQLQueryParser::Math_exprContext* CEQLQueryParser::math_expr(int precedence) {
         _localctx = _tracker.createInstance<Attribute_math_exprContext>(_localctx);
         _ctx = _localctx;
         previousContext = _localctx;
-        setState(297);
+        setState(303);
         attribute_name();
         break;
       }
@@ -2832,7 +2909,7 @@ CEQLQueryParser::Math_exprContext* CEQLQueryParser::math_expr(int precedence) {
         _localctx = _tracker.createInstance<Unary_math_exprContext>(_localctx);
         _ctx = _localctx;
         previousContext = _localctx;
-        setState(298);
+        setState(304);
         _la = _input->LA(1);
         if (!(_la == CEQLQueryParser::PLUS
 
@@ -2843,7 +2920,7 @@ CEQLQueryParser::Math_exprContext* CEQLQueryParser::math_expr(int precedence) {
           _errHandler->reportMatch(this);
           consume();
         }
-        setState(299);
+        setState(305);
         math_expr(3);
         break;
       }
@@ -2852,7 +2929,7 @@ CEQLQueryParser::Math_exprContext* CEQLQueryParser::math_expr(int precedence) {
       throw NoViableAltException(this);
     }
     _ctx->stop = _input->LT(-1);
-    setState(310);
+    setState(316);
     _errHandler->sync(this);
     alt = getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 28, _ctx);
     while (alt != 2 && alt != atn::ATN::INVALID_ALT_NUMBER) {
@@ -2860,17 +2937,17 @@ CEQLQueryParser::Math_exprContext* CEQLQueryParser::math_expr(int precedence) {
         if (!_parseListeners.empty())
           triggerExitRuleEvent();
         previousContext = _localctx;
-        setState(308);
+        setState(314);
         _errHandler->sync(this);
         switch (getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 27, _ctx)) {
         case 1: {
           auto newContext = _tracker.createInstance<Mul_math_exprContext>(_tracker.createInstance<Math_exprContext>(parentContext, parentState));
           _localctx = newContext;
           pushNewRecursionContext(newContext, startState, RuleMath_expr);
-          setState(302);
+          setState(308);
 
           if (!(precpred(_ctx, 2))) throw FailedPredicateException(this, "precpred(_ctx, 2)");
-          setState(303);
+          setState(309);
           _la = _input->LA(1);
           if (!((((_la & ~ 0x3fULL) == 0) &&
             ((1ULL << _la) & 107374182400) != 0))) {
@@ -2880,7 +2957,7 @@ CEQLQueryParser::Math_exprContext* CEQLQueryParser::math_expr(int precedence) {
             _errHandler->reportMatch(this);
             consume();
           }
-          setState(304);
+          setState(310);
           math_expr(3);
           break;
         }
@@ -2889,10 +2966,10 @@ CEQLQueryParser::Math_exprContext* CEQLQueryParser::math_expr(int precedence) {
           auto newContext = _tracker.createInstance<Sum_math_exprContext>(_tracker.createInstance<Math_exprContext>(parentContext, parentState));
           _localctx = newContext;
           pushNewRecursionContext(newContext, startState, RuleMath_expr);
-          setState(305);
+          setState(311);
 
           if (!(precpred(_ctx, 1))) throw FailedPredicateException(this, "precpred(_ctx, 1)");
-          setState(306);
+          setState(312);
           _la = _input->LA(1);
           if (!(_la == CEQLQueryParser::PLUS
 
@@ -2903,7 +2980,7 @@ CEQLQueryParser::Math_exprContext* CEQLQueryParser::math_expr(int precedence) {
             _errHandler->reportMatch(this);
             consume();
           }
-          setState(307);
+          setState(313);
           math_expr(2);
           break;
         }
@@ -2912,7 +2989,7 @@ CEQLQueryParser::Math_exprContext* CEQLQueryParser::math_expr(int precedence) {
           break;
         } 
       }
-      setState(312);
+      setState(318);
       _errHandler->sync(this);
       alt = getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 28, _ctx);
     }
@@ -2972,27 +3049,27 @@ CEQLQueryParser::Value_seqContext* CEQLQueryParser::value_seq() {
     exitRule();
   });
   try {
-    setState(321);
+    setState(327);
     _errHandler->sync(this);
     switch (getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 29, _ctx)) {
     case 1: {
       enterOuterAlt(_localctx, 1);
-      setState(313);
+      setState(319);
       match(CEQLQueryParser::LEFT_CURLY_BRACKET);
-      setState(314);
+      setState(320);
       number_seq();
-      setState(315);
+      setState(321);
       match(CEQLQueryParser::RIGHT_CURLY_BRACKET);
       break;
     }
 
     case 2: {
       enterOuterAlt(_localctx, 2);
-      setState(317);
+      setState(323);
       match(CEQLQueryParser::LEFT_CURLY_BRACKET);
-      setState(318);
+      setState(324);
       string_seq();
-      setState(319);
+      setState(325);
       match(CEQLQueryParser::RIGHT_CURLY_BRACKET);
       break;
     }
@@ -3150,23 +3227,23 @@ CEQLQueryParser::Number_seqContext* CEQLQueryParser::number_seq() {
     exitRule();
   });
   try {
-    setState(344);
+    setState(350);
     _errHandler->sync(this);
     switch (getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 31, _ctx)) {
     case 1: {
       _localctx = _tracker.createInstance<CEQLQueryParser::Number_listContext>(_localctx);
       enterOuterAlt(_localctx, 1);
-      setState(323);
+      setState(329);
       number();
-      setState(328);
+      setState(334);
       _errHandler->sync(this);
       _la = _input->LA(1);
       while (_la == CEQLQueryParser::COMMA) {
-        setState(324);
-        match(CEQLQueryParser::COMMA);
-        setState(325);
-        number();
         setState(330);
+        match(CEQLQueryParser::COMMA);
+        setState(331);
+        number();
+        setState(336);
         _errHandler->sync(this);
         _la = _input->LA(1);
       }
@@ -3176,11 +3253,11 @@ CEQLQueryParser::Number_seqContext* CEQLQueryParser::number_seq() {
     case 2: {
       _localctx = _tracker.createInstance<CEQLQueryParser::Integer_rangeContext>(_localctx);
       enterOuterAlt(_localctx, 2);
-      setState(331);
+      setState(337);
       integer();
-      setState(332);
+      setState(338);
       match(CEQLQueryParser::DOUBLE_DOT);
-      setState(333);
+      setState(339);
       integer();
       break;
     }
@@ -3188,11 +3265,11 @@ CEQLQueryParser::Number_seqContext* CEQLQueryParser::number_seq() {
     case 3: {
       _localctx = _tracker.createInstance<CEQLQueryParser::Double_rangeContext>(_localctx);
       enterOuterAlt(_localctx, 3);
-      setState(335);
+      setState(341);
       double_();
-      setState(336);
+      setState(342);
       match(CEQLQueryParser::DOUBLE_DOT);
-      setState(337);
+      setState(343);
       double_();
       break;
     }
@@ -3200,9 +3277,9 @@ CEQLQueryParser::Number_seqContext* CEQLQueryParser::number_seq() {
     case 4: {
       _localctx = _tracker.createInstance<CEQLQueryParser::Number_range_lowerContext>(_localctx);
       enterOuterAlt(_localctx, 4);
-      setState(339);
+      setState(345);
       number();
-      setState(340);
+      setState(346);
       match(CEQLQueryParser::DOUBLE_DOT);
       break;
     }
@@ -3210,9 +3287,9 @@ CEQLQueryParser::Number_seqContext* CEQLQueryParser::number_seq() {
     case 5: {
       _localctx = _tracker.createInstance<CEQLQueryParser::Number_range_upperContext>(_localctx);
       enterOuterAlt(_localctx, 5);
-      setState(342);
+      setState(348);
       match(CEQLQueryParser::DOUBLE_DOT);
-      setState(343);
+      setState(349);
       number();
       break;
     }
@@ -3280,17 +3357,17 @@ CEQLQueryParser::String_seqContext* CEQLQueryParser::string_seq() {
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(346);
+    setState(352);
     string();
-    setState(351);
+    setState(357);
     _errHandler->sync(this);
     _la = _input->LA(1);
     while (_la == CEQLQueryParser::COMMA) {
-      setState(347);
-      match(CEQLQueryParser::COMMA);
-      setState(348);
-      string();
       setState(353);
+      match(CEQLQueryParser::COMMA);
+      setState(354);
+      string();
+      setState(359);
       _errHandler->sync(this);
       _la = _input->LA(1);
     }
@@ -3348,26 +3425,26 @@ CEQLQueryParser::Time_windowContext* CEQLQueryParser::time_window() {
     exitRule();
   });
   try {
-    setState(357);
+    setState(363);
     _errHandler->sync(this);
     switch (getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 33, _ctx)) {
     case 1: {
       enterOuterAlt(_localctx, 1);
-      setState(354);
+      setState(360);
       event_span();
       break;
     }
 
     case 2: {
       enterOuterAlt(_localctx, 2);
-      setState(355);
+      setState(361);
       time_span();
       break;
     }
 
     case 3: {
       enterOuterAlt(_localctx, 3);
-      setState(356);
+      setState(362);
       custom_span();
       break;
     }
@@ -3426,9 +3503,9 @@ CEQLQueryParser::Event_spanContext* CEQLQueryParser::event_span() {
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(359);
+    setState(365);
     integer();
-    setState(360);
+    setState(366);
     match(CEQLQueryParser::K_EVENTS);
    
   }
@@ -3486,12 +3563,12 @@ CEQLQueryParser::Time_spanContext* CEQLQueryParser::time_span() {
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(363);
+    setState(369);
     _errHandler->sync(this);
 
     switch (getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 34, _ctx)) {
     case 1: {
-      setState(362);
+      setState(368);
       hour_span();
       break;
     }
@@ -3499,12 +3576,12 @@ CEQLQueryParser::Time_spanContext* CEQLQueryParser::time_span() {
     default:
       break;
     }
-    setState(366);
+    setState(372);
     _errHandler->sync(this);
 
     switch (getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 35, _ctx)) {
     case 1: {
-      setState(365);
+      setState(371);
       minute_span();
       break;
     }
@@ -3512,14 +3589,14 @@ CEQLQueryParser::Time_spanContext* CEQLQueryParser::time_span() {
     default:
       break;
     }
-    setState(369);
+    setState(375);
     _errHandler->sync(this);
 
     _la = _input->LA(1);
     if (_la == CEQLQueryParser::DOUBLE_LITERAL
 
     || _la == CEQLQueryParser::INTEGER_LITERAL) {
-      setState(368);
+      setState(374);
       second_span();
     }
    
@@ -3573,9 +3650,9 @@ CEQLQueryParser::Hour_spanContext* CEQLQueryParser::hour_span() {
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(371);
+    setState(377);
     number();
-    setState(372);
+    setState(378);
     match(CEQLQueryParser::K_HOURS);
    
   }
@@ -3628,9 +3705,9 @@ CEQLQueryParser::Minute_spanContext* CEQLQueryParser::minute_span() {
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(374);
+    setState(380);
     number();
-    setState(375);
+    setState(381);
     match(CEQLQueryParser::K_MINUTES);
    
   }
@@ -3683,9 +3760,9 @@ CEQLQueryParser::Second_spanContext* CEQLQueryParser::second_span() {
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(377);
+    setState(383);
     number();
-    setState(378);
+    setState(384);
     match(CEQLQueryParser::K_SECONDS);
    
   }
@@ -3746,13 +3823,13 @@ CEQLQueryParser::Custom_spanContext* CEQLQueryParser::custom_span() {
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(380);
+    setState(386);
     integer();
-    setState(381);
+    setState(387);
     match(CEQLQueryParser::LEFT_SQUARE_BRACKET);
-    setState(382);
+    setState(388);
     any_name();
-    setState(383);
+    setState(389);
     match(CEQLQueryParser::RIGHT_SQUARE_BRACKET);
    
   }
@@ -3810,16 +3887,16 @@ CEQLQueryParser::Named_eventContext* CEQLQueryParser::named_event() {
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(385);
+    setState(391);
     s_event_name();
-    setState(388);
+    setState(394);
     _errHandler->sync(this);
 
     _la = _input->LA(1);
     if (_la == CEQLQueryParser::K_AS) {
-      setState(386);
+      setState(392);
       match(CEQLQueryParser::K_AS);
-      setState(387);
+      setState(393);
       event_name();
     }
    
@@ -3882,18 +3959,18 @@ CEQLQueryParser::S_event_name_with_projectionContext* CEQLQueryParser::s_event_n
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(390);
+    setState(396);
     s_event_name();
-    setState(395);
+    setState(401);
     _errHandler->sync(this);
 
     _la = _input->LA(1);
     if (_la == CEQLQueryParser::LEFT_SQUARE_BRACKET) {
-      setState(391);
+      setState(397);
       match(CEQLQueryParser::LEFT_SQUARE_BRACKET);
-      setState(392);
+      setState(398);
       list_of_attribute_names();
-      setState(393);
+      setState(399);
       match(CEQLQueryParser::RIGHT_SQUARE_BRACKET);
     }
    
@@ -3951,14 +4028,14 @@ CEQLQueryParser::S_event_nameContext* CEQLQueryParser::s_event_name() {
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(400);
+    setState(406);
     _errHandler->sync(this);
 
     switch (getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 39, _ctx)) {
     case 1: {
-      setState(397);
+      setState(403);
       stream_name();
-      setState(398);
+      setState(404);
       match(CEQLQueryParser::GE);
       break;
     }
@@ -3966,7 +4043,7 @@ CEQLQueryParser::S_event_nameContext* CEQLQueryParser::s_event_name() {
     default:
       break;
     }
-    setState(402);
+    setState(408);
     event_name();
    
   }
@@ -4015,7 +4092,7 @@ CEQLQueryParser::Event_nameContext* CEQLQueryParser::event_name() {
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(404);
+    setState(410);
     any_name();
    
   }
@@ -4111,10 +4188,10 @@ CEQLQueryParser::Atomic_cel_formulaContext* CEQLQueryParser::atomic_cel_formula(
     _ctx = _localctx;
     previousContext = _localctx;
 
-    setState(407);
+    setState(413);
     s_event_name();
     _ctx->stop = _input->LT(-1);
-    setState(414);
+    setState(420);
     _errHandler->sync(this);
     alt = getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 40, _ctx);
     while (alt != 2 && alt != atn::ATN::INVALID_ALT_NUMBER) {
@@ -4125,15 +4202,15 @@ CEQLQueryParser::Atomic_cel_formulaContext* CEQLQueryParser::atomic_cel_formula(
         auto newContext = _tracker.createInstance<Atomic_cel_formula_filterContext>(_tracker.createInstance<Atomic_cel_formulaContext>(parentContext, parentState));
         _localctx = newContext;
         pushNewRecursionContext(newContext, startState, RuleAtomic_cel_formula);
-        setState(409);
+        setState(415);
 
         if (!(precpred(_ctx, 1))) throw FailedPredicateException(this, "precpred(_ctx, 1)");
-        setState(410);
+        setState(416);
         match(CEQLQueryParser::K_FILTER);
-        setState(411);
+        setState(417);
         filter(0); 
       }
-      setState(416);
+      setState(422);
       _errHandler->sync(this);
       alt = getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 40, _ctx);
     }
@@ -4182,7 +4259,7 @@ CEQLQueryParser::Stream_nameContext* CEQLQueryParser::stream_name() {
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(417);
+    setState(423);
     any_name();
    
   }
@@ -4244,17 +4321,17 @@ CEQLQueryParser::List_of_attribute_namesContext* CEQLQueryParser::list_of_attrib
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(419);
+    setState(425);
     attribute_name();
-    setState(424);
+    setState(430);
     _errHandler->sync(this);
     _la = _input->LA(1);
     while (_la == CEQLQueryParser::COMMA) {
-      setState(420);
-      match(CEQLQueryParser::COMMA);
-      setState(421);
-      attribute_name();
       setState(426);
+      match(CEQLQueryParser::COMMA);
+      setState(427);
+      attribute_name();
+      setState(432);
       _errHandler->sync(this);
       _la = _input->LA(1);
     }
@@ -4305,7 +4382,7 @@ CEQLQueryParser::Attribute_nameContext* CEQLQueryParser::attribute_name() {
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(427);
+    setState(433);
     any_name();
    
   }
@@ -4354,7 +4431,7 @@ CEQLQueryParser::IntegerContext* CEQLQueryParser::integer() {
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(429);
+    setState(435);
     match(CEQLQueryParser::INTEGER_LITERAL);
    
   }
@@ -4403,7 +4480,7 @@ CEQLQueryParser::DoubleContext* CEQLQueryParser::double_() {
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(431);
+    setState(437);
     match(CEQLQueryParser::DOUBLE_LITERAL);
    
   }
@@ -4455,19 +4532,19 @@ CEQLQueryParser::NumberContext* CEQLQueryParser::number() {
     exitRule();
   });
   try {
-    setState(435);
+    setState(441);
     _errHandler->sync(this);
     switch (_input->LA(1)) {
       case CEQLQueryParser::INTEGER_LITERAL: {
         enterOuterAlt(_localctx, 1);
-        setState(433);
+        setState(439);
         integer();
         break;
       }
 
       case CEQLQueryParser::DOUBLE_LITERAL: {
         enterOuterAlt(_localctx, 2);
-        setState(434);
+        setState(440);
         double_();
         break;
       }
@@ -4522,7 +4599,7 @@ CEQLQueryParser::StringContext* CEQLQueryParser::string() {
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(437);
+    setState(443);
     match(CEQLQueryParser::STRING_LITERAL);
    
   }
@@ -4571,7 +4648,7 @@ CEQLQueryParser::Any_nameContext* CEQLQueryParser::any_name() {
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(439);
+    setState(445);
     match(CEQLQueryParser::IDENTIFIER);
    
   }
@@ -4737,7 +4814,7 @@ CEQLQueryParser::KeywordContext* CEQLQueryParser::keyword() {
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(441);
+    setState(447);
     _la = _input->LA(1);
     if (!((((_la & ~ 0x3fULL) == 0) &&
       ((1ULL << _la) & 4294967166) != 0))) {
@@ -4774,15 +4851,17 @@ bool CEQLQueryParser::sempred(RuleContext *context, size_t ruleIndex, size_t pre
 
 bool CEQLQueryParser::cel_formulaSempred(Cel_formulaContext *_localctx, size_t predicateIndex) {
   switch (predicateIndex) {
-    case 0: return precpred(_ctx, 6);
-    case 1: return precpred(_ctx, 5);
-    case 2: return precpred(_ctx, 4);
-    case 3: return precpred(_ctx, 2);
-    case 4: return precpred(_ctx, 1);
-    case 5: return precpred(_ctx, 9);
-    case 6: return precpred(_ctx, 8);
-    case 7: return precpred(_ctx, 7);
-    case 8: return precpred(_ctx, 3);
+    case 0: return precpred(_ctx, 8);
+    case 1: return precpred(_ctx, 7);
+    case 2: return precpred(_ctx, 6);
+    case 3: return precpred(_ctx, 4);
+    case 4: return precpred(_ctx, 3);
+    case 5: return precpred(_ctx, 2);
+    case 6: return precpred(_ctx, 1);
+    case 7: return precpred(_ctx, 11);
+    case 8: return precpred(_ctx, 10);
+    case 9: return precpred(_ctx, 9);
+    case 10: return precpred(_ctx, 5);
 
   default:
     break;
@@ -4792,8 +4871,8 @@ bool CEQLQueryParser::cel_formulaSempred(Cel_formulaContext *_localctx, size_t p
 
 bool CEQLQueryParser::filterSempred(FilterContext *_localctx, size_t predicateIndex) {
   switch (predicateIndex) {
-    case 9: return precpred(_ctx, 2);
-    case 10: return precpred(_ctx, 1);
+    case 11: return precpred(_ctx, 2);
+    case 12: return precpred(_ctx, 1);
 
   default:
     break;
@@ -4803,8 +4882,8 @@ bool CEQLQueryParser::filterSempred(FilterContext *_localctx, size_t predicateIn
 
 bool CEQLQueryParser::predicateSempred(PredicateContext *_localctx, size_t predicateIndex) {
   switch (predicateIndex) {
-    case 11: return precpred(_ctx, 5);
-    case 12: return precpred(_ctx, 4);
+    case 13: return precpred(_ctx, 5);
+    case 14: return precpred(_ctx, 4);
 
   default:
     break;
@@ -4814,8 +4893,8 @@ bool CEQLQueryParser::predicateSempred(PredicateContext *_localctx, size_t predi
 
 bool CEQLQueryParser::math_exprSempred(Math_exprContext *_localctx, size_t predicateIndex) {
   switch (predicateIndex) {
-    case 13: return precpred(_ctx, 2);
-    case 14: return precpred(_ctx, 1);
+    case 15: return precpred(_ctx, 2);
+    case 16: return precpred(_ctx, 1);
 
   default:
     break;
@@ -4825,7 +4904,7 @@ bool CEQLQueryParser::math_exprSempred(Math_exprContext *_localctx, size_t predi
 
 bool CEQLQueryParser::atomic_cel_formulaSempred(Atomic_cel_formulaContext *_localctx, size_t predicateIndex) {
   switch (predicateIndex) {
-    case 15: return precpred(_ctx, 1);
+    case 17: return precpred(_ctx, 1);
 
   default:
     break;

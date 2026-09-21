@@ -71,6 +71,26 @@ public:
     return visitChildren(ctx);
   }
 
+  virtual std::any visitFilter_cel_formula(CEQLQueryParser::Filter_cel_formulaContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual std::any visitAllen_during_formula(CEQLQueryParser::Allen_during_formulaContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual std::any visitAs_cel_formula(CEQLQueryParser::As_cel_formulaContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual std::any visitNon_contiguous_sequencing_cel_formula(CEQLQueryParser::Non_contiguous_sequencing_cel_formulaContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual std::any visitNon_contiguous_iteration_cel_formula(CEQLQueryParser::Non_contiguous_iteration_cel_formulaContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
   virtual std::any visitNot_event_type_atomic_cel_formula(CEQLQueryParser::Not_event_type_atomic_cel_formulaContext *ctx) override {
     return visitChildren(ctx);
   }
@@ -80,6 +100,10 @@ public:
   }
 
   virtual std::any visitContiguous_iteration_cel_formula(CEQLQueryParser::Contiguous_iteration_cel_formulaContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual std::any visitAllen_finishes_formula(CEQLQueryParser::Allen_finishes_formulaContext *ctx) override {
     return visitChildren(ctx);
   }
 
@@ -95,23 +119,7 @@ public:
     return visitChildren(ctx);
   }
 
-  virtual std::any visitFilter_cel_formula(CEQLQueryParser::Filter_cel_formulaContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
   virtual std::any visitOr_cel_formula(CEQLQueryParser::Or_cel_formulaContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
-  virtual std::any visitAs_cel_formula(CEQLQueryParser::As_cel_formulaContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
-  virtual std::any visitNon_contiguous_sequencing_cel_formula(CEQLQueryParser::Non_contiguous_sequencing_cel_formulaContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
-  virtual std::any visitNon_contiguous_iteration_cel_formula(CEQLQueryParser::Non_contiguous_iteration_cel_formulaContext *ctx) override {
     return visitChildren(ctx);
   }
 

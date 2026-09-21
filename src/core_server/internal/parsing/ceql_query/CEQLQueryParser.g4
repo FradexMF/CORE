@@ -58,6 +58,8 @@ cel_formula
  | cel_formula K_FILTER filter                        # filter_cel_formula
  | cel_formula COLON_O cel_formula                    # allen_overlap_formula
  | cel_formula COLON_S cel_formula                    # allen_starts_formula
+ | cel_formula COLON_D cel_formula                    # allen_during_formula
+ | cel_formula COLON_F cel_formula                    # allen_finishes_formula
  ;
 
 partition_list

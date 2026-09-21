@@ -46,7 +46,7 @@ EQ  : '==' | '='  ;
 NEQ : '!=' | '<>' ;
 
 SEMICOLON : ';' ;
-COLON : ':' 
+COLON : ':' ; 
 COMMA : ',' ;
 DOUBLE_DOT : '..';
 LEFT_PARENTHESIS : '(' ;
@@ -56,8 +56,10 @@ RIGHT_SQUARE_BRACKET : ']' ;
 LEFT_CURLY_BRACKET : '{' ;
 RIGHT_CURLY_BRACKET : '}' ;
 COLON_PLUS : ':+' ;
-COLON_O : ':o';
-COLON_S : ':s';
+COLON_O : ':o' ;
+COLON_S : ':s' ;
+COLON_D : ':d' ;
+COLON_F : ':f' ;
 
 IDENTIFIER
  :  '`' (~'`' | '``')* '`'

@@ -14,6 +14,8 @@
 #include "core_server/internal/ceql/cel_formula/formula/or_formula.hpp"
 #include "core_server/internal/ceql/cel_formula/formula/allen_overlap_formula.hpp"
 #include "core_server/internal/ceql/cel_formula/formula/allen_starts_formula.hpp"
+#include "core_server/internal/ceql/cel_formula/formula/allen_during_formula.hpp"
+#include "core_server/internal/ceql/cel_formula/formula/allen_finishes_formula.hpp"
 #include "core_server/internal/ceql/cel_formula/formula/visitors/formula_visitor.hpp"
 
 namespace CORE::Internal::CEQL {
@@ -59,6 +61,16 @@ struct GetAllASVariablesVisitor : public FormulaVisitor {
   }
 
   void visit(AllenStartsFormula& formula) override {
+    formula.left->accept_visitor(*this);
+    formula.right->accept_visitor(*this);
+  }
+
+  void visit(AllenDuringFormula& formula) override {
+    formula.left->accept_visitor(*this);
+    formula.right->accept_visitor(*this);
+  }
+
+  void visit(AllenFinishesFormula& formula) override {
     formula.left->accept_visitor(*this);
     formula.right->accept_visitor(*this);
   }

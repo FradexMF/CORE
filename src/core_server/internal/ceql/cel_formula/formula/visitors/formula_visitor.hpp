@@ -16,6 +16,8 @@ class ProjectionFormula;               // π
 class NotEventTypeFormula;             // NOT
 class AllenOverlapFormula;             // :o
 class AllenStartsFormula;             // :s
+class AllenDuringFormula;             // :d
+class AllenFinishesFormula;           // :f
 
 class FormulaVisitor {
  public:
@@ -34,6 +36,8 @@ class FormulaVisitor {
   virtual void visit(NotEventTypeFormula&)  {throw std::logic_error("visit NotEventTypeFormula not implemented.");}
   virtual void visit(AllenOverlapFormula&) {throw std::logic_error("visit AllenOverlapFormula not implemented.");}
   virtual void visit(AllenStartsFormula&) {throw std::logic_error("visit AllenStartsFormula not implemented.");}
+  virtual void visit(AllenDuringFormula&) {throw std::logic_error("visit AllenDuringFormula not implemented.");}
+  virtual void visit(AllenFinishesFormula&) {throw std::logic_error("visit AllenFinishesFormula not implemented.");}
 
   // clang-format on
 };
